@@ -1,6 +1,6 @@
 # Le projet-specialise-2022-TLBail
 
- [Fichie - Lancement "Kickoff" du projet 2](https://docs.google.com/document/d/1M5DOUkbgkHXa6CvjYgbR4eixVMgcs85VnLRMg4np9to/edit?usp=sharing)  
+ [Fichie - Lancement "Kickoff" du projet](https://docs.google.com/document/d/1M5DOUkbgkHXa6CvjYgbR4eixVMgcs85VnLRMg4np9to/edit?usp=sharing)  
  
  [Grille de COMPARAISON - Théo LE BAIL](https://docs.google.com/presentation/d/1NcK9768Jqy3lgCQSJTlWPTfMGti7aan61g2mb7gC9dE/edit#slide=id.g855d4d0eba_0_115)
  
