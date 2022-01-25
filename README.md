@@ -6,5 +6,7 @@
  
  [Recherche Succesive - Théo LE BAIL](https://docs.google.com/presentation/d/1ZAYMwCLb3-WyhonXozYlzzubTr9469pc4nuRKWDWkAg/edit#slide=id.g10ef23692ea_2_37)
  
+ 
+ [Fiche - Poc & choix_technique - Théo LE BAIL](https://docs.google.com/document/d/1t_Iij7ceHV01zjlaMwNhVjLsx-s7vkHcyjqVCeu3VUM/edit#heading=h.gjdgxs)
 contact :
 theolebail02@gmail.com
