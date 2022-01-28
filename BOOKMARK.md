@@ -5,6 +5,9 @@
 
 ### smart contract
 
+[tuto solidity](https://www.youtube.com/watch?v=ZH_7nEIJDUY)
+
+
 
 ### Nft art
 
@@ -12,6 +15,8 @@
 
 
 ### React app
+
+[tuto web3 app](https://www.youtube.com/watch?v=meTpMP0J5E8)
 
 
 
