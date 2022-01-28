@@ -10,7 +10,6 @@
 - [Documentation Solidity](https://docs.soliditylang.org/en/v0.8.11/)
 - [test smart contract avec Waffle](https://getwaffle.io/)
 
-
 ### Nft art
 
 #### Génération
@@ -26,7 +25,7 @@
 ### React app
 
 - [tuto web3 app](https://www.youtube.com/watch?v=meTpMP0J5E8)
-
+- [Documentation etherjs](https://docs.ethers.io/v5/)
 
 
 ### metamask
