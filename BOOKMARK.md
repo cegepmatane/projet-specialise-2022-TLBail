@@ -8,6 +8,7 @@
 - [tuto solidity](https://www.youtube.com/watch?v=ZH_7nEIJDUY)
 - [Site OpenZeppelin](https://openzeppelin.com/)
 - [Documentation Solidity](https://docs.soliditylang.org/en/v0.8.11/)
+- [test smart contract avec Waffle](https://getwaffle.io/)
 
 
 ### Nft art
