@@ -5,7 +5,7 @@
 
 ### smart contract
 
-[tuto solidity](https://www.youtube.com/watch?v=ZH_7nEIJDUY)
+- [tuto solidity](https://www.youtube.com/watch?v=ZH_7nEIJDUY)
 
 
 
@@ -16,7 +16,7 @@
 
 ### React app
 
-[tuto web3 app](https://www.youtube.com/watch?v=meTpMP0J5E8)
+- [tuto web3 app](https://www.youtube.com/watch?v=meTpMP0J5E8)
 
 
 
