@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1992",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1992.png",
+  "dna": "0e33016fea33d49e72c0f12daae45f825c720025",
+  "edition": 1992,
+  "date": 1643858413998,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Red"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikjager"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

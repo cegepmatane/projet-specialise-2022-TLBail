@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #2007",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/2007.png",
+  "dna": "662a5ccba9307c486fa64ead63ea8de6088e5c13",
+  "edition": 2007,
+  "date": 1643858415976,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikjager2leretour"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "blue"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

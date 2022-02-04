@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1919",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1919.png",
+  "dna": "d7f043314f849e4e729ec82cd81ea7d536288d9e",
+  "edition": 1919,
+  "date": 1643858403312,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikasa"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red2"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

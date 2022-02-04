@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1999",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1999.png",
+  "dna": "30a3777fb975c07028f06c91138085f93c279637",
+  "edition": 1999,
+  "date": 1643858414857,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "killuka"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green2"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

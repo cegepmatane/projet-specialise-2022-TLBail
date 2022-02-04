@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #775",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/775.png",
+  "dna": "4b30efe49fadf97ac140a04acf465c113500828e",
+  "edition": 775,
+  "date": 1643858232046,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "killuka"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green1"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

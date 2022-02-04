@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1957",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1957.png",
+  "dna": "d610c5467225fcb90a2cc691ec242ac127822cd1",
+  "edition": 1957,
+  "date": 1643858408847,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Pink"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikjager"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green1"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

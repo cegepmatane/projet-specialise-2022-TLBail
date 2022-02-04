@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1908",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1908.png",
+  "dna": "7c6a685c9ae93dd363ee3c78967ce7fa766f78bb",
+  "edition": 1908,
+  "date": 1643858401748,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "livachu"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
