@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #577",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/577.png",
+  "dna": "cd9661f460324911f04e9e95da08c9a32c91b5ae",
+  "edition": 577,
+  "date": 1643858202946,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikasoka2"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1975",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1975.png",
+  "dna": "6c6af0c71a5ec7b3eb2ef039a1232738007f63e0",
+  "edition": 1975,
+  "date": 1643858411482,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikjager2leretour"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green1"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

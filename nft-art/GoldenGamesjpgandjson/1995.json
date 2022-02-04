@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1995",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1995.png",
+  "dna": "e6c808418e7a7025537a8808dd06e38eb33bba41",
+  "edition": 1995,
+  "date": 1643858414380,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikasoka2"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

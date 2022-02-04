@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1977",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1977.png",
+  "dna": "1591df931e8b56b55bc394df27a5f7753d65e6d0",
+  "edition": 1977,
+  "date": 1643858411775,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "killuka"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #2006",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/2006.png",
+  "dna": "a89d1793f4de2e42867cabc71d21eb4a4418a6ff",
+  "edition": 2006,
+  "date": 1643858415820,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikuzumaki"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

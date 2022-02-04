@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1991",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1991.png",
+  "dna": "664254420e2f59aa6a25968e395485de3b69836b",
+  "edition": 1991,
+  "date": 1643858413829,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pika_of_all"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "blue2"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
