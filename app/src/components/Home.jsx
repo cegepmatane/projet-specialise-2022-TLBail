@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import GoldenGames from '../artifacts/contracts/GoldenGames.sol/GoldenGames.json';
+import { Container, Alert, Col, Row, Card, Button } from 'react-bootstrap'
 
 const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -9,9 +10,9 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 const contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
-
-
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
+
+
 
 function Home() {
     const [totalMinted, setTotalMinted] = useState(0);
@@ -50,17 +51,53 @@ function Home() {
     };
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <h3>Home</h3>
+        <Container>
 
-                <button onClick={mintToken}>
+            <Row className='m-2'>
+                <Alert variant="dark">
+                    <Alert.Heading className='text-center'>Home</Alert.Heading>
+                </Alert>
+            </Row>
+
+            <Row className='m-2'>
+
+                <Button variant="primary" className='fit' onClick={mintToken}>
                     mintToken !
-                </button>
-            </header>
-        </div>
+                </Button>
+            </Row>
+
+
+            <Row className='m-2 p-2'>
+                <NftImage />
+            </Row>
+        </Container>
+
     )
 
+}
+
+function NftImage() {
+
+
+    return (
+
+        <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src="https://placeimg.com/300/120/any" />
+            <Card.Header>Header</Card.Header>
+            <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Subtitle>Card Subtitle</Card.Subtitle>
+                <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                </Card.Text>
+            </Card.Body>
+            <Card.Body>
+                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+        </Card>
+    );
 }
 
 export default Home;

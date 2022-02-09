@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import logo from './logo.svg'
-import './App.css'
 import Home from './components/Home'
 import Install from './components/Install'
 
