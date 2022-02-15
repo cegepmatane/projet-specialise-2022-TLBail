@@ -1,7 +1,8 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import GoldenGames from '../artifacts/contracts/GoldenGames.sol/GoldenGames.json';
-import { Container, Alert, Col, Row, Card, Button, CardGroup } from 'react-bootstrap'
+import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup } from 'react-bootstrap'
+import loadingImg from '../../assets/image/loading.gif'
 
 const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -86,16 +87,20 @@ function Home() {
 }
 
 function NftImage({ tokenId, totalMinted }) {
+    if (tokenId == 0) return (<div></div>);
     const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.jpg`;
-    const metaDataURI = `${contentId}/${tokenId}.json`;
 
-
+    const onImageError = (error) => {
+        console.log("failed to load image");
+        console.log(error);
+        error.target.src = imageURI + "?t=" + new Date().getTime();
+    }
 
 
     return (
 
         <Card style={{ width: '18rem' }} className="m-2">
-            <Card.Img variant="top" src={imageURI} />
+            <Card.Img variant="top" src={imageURI} onError={onImageError} />
             <Card.Body>
                 <Card.Title>nft #{tokenId}</Card.Title>
                 <Card.Text>
@@ -104,9 +109,67 @@ function NftImage({ tokenId, totalMinted }) {
                 <Button variant="danger" onClick={() => alert(imageURI)}>
                     voir le lien vers l'image
                 </Button>
+                <NftData tokenId={tokenId} />
+
             </Card.Body>
         </Card>
     );
 }
 
+
+
+function NftData({ tokenId }) {
+    console.log("salut " + tokenId);
+    const metaDataURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.json`;
+    const [data, setData] = useState([]);
+    const getData = () => {
+        fetch(metaDataURI
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            }
+        ).then(function (response) {
+            console.log(response)
+            return response.json();
+        }).then(function (myJson) {
+            console.log(myJson);
+            setData(myJson);
+        }).catch((error) => {
+            console.log("error fetching data");
+            setTimeout(getData, 300);
+        });
+    }
+    useEffect(() => {
+        getData()
+    }, []);
+
+
+    return (
+        <div>
+            <Accordion>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header> Données
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        {
+                            data && data.attributes ? data.attributes.map(
+                                (item) => <p>{JSON.stringify(item)}</p>
+                            )
+                                :
+                                <div>
+                                    <img src={loadingImg} />
+                                    Chargement ...
+                                </div>
+                        }
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
+
+
+        </div>
+
+    );
+}
 export default Home;
