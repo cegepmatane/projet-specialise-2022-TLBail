@@ -1,5 +1,10 @@
 # Le projet-specialise-2022-TLBail
 
+## Description
+- réalisation d'une application web3 sur les nft.
+
+
+## Document
  [Fichie - Lancement "Kickoff" du projet](https://docs.google.com/document/d/1M5DOUkbgkHXa6CvjYgbR4eixVMgcs85VnLRMg4np9to/edit?usp=sharing)  
  
  [Grille de COMPARAISON - Théo LE BAIL](https://docs.google.com/presentation/d/1NcK9768Jqy3lgCQSJTlWPTfMGti7aan61g2mb7gC9dE/edit#slide=id.g855d4d0eba_0_115)
@@ -10,5 +15,7 @@
 
 [Analyse fonctionnelle](https://docs.google.com/presentation/d/1xl6I8bV9Oj-j50vucBGKv9TjJjoyAg67byksaF1FAnU/edit?usp=sharing)
 
-contact :
+[Interface](https://www.figma.com/file/QStQhJC0b0aLbAILVrpwdl/Golden-game)
+
+## contact
 theolebail02@gmail.com
