@@ -6,13 +6,11 @@ import loadingImg from '../../assets/image/loading.gif'
 
 const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
-var provider;
-var signer;
-
-var contract;
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
-
+var provider;
+var signer;
+var contract;
 
 function Home() {
     provider = new ethers.providers.Web3Provider(window.ethereum);
