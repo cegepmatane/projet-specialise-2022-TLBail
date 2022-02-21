@@ -6,16 +6,19 @@ import loadingImg from '../../assets/image/loading.gif'
 
 const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+var provider;
+var signer;
 
-const signer = provider.getSigner();
-
-const contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
+var contract;
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
 
 
 function Home() {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+    contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
+
     const [totalMinted, setTotalMinted] = useState(0);
     const [met, setMetaDataURI] = useState(0);
     useEffect(() => {
