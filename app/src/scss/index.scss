@@ -1,6 +1,17 @@
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "component/header";
 
-body{
-    background-color: rgb(13, 13, 13);
+.navbarBrandImg{
+    height: 7vh;
 
 }
+
+
+.linkNavBar{
+    text-decoration: none;
+    color: rgb(236, 236, 236);
+    margin: 1em;
+    &:hover{
+        color: rgb(185, 185, 185);
+    }
+}
+
