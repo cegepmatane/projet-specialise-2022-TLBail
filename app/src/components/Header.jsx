@@ -17,11 +17,14 @@ function Header() {
                     <Nav
                         className="me-auto my-2 my-lg-0"
                         style={{ maxHeight: '100px' }}
-
                         navbarScroll
                     >
-                        <StyleNavLink link="/about" text="about" />
-                        <StyleNavLink link="/contact" text="contact" />
+                        <StyleNavLink link="/mint" text="créer" />
+                        <StyleNavLink link="/discover" text="explorer" />
+                        <a href='https://github.com/cegepmatane/projet-specialise-2022-TLBail' className='linkNavBar'>
+                            about
+                        </a>
+                        <a href="mailto:theolebail02@gmail.com" className='linkNavBar'>contact</a>
                     </Nav>
 
                 </Navbar.Collapse>
