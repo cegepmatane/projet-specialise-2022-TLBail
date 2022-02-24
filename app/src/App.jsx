@@ -1,30 +1,22 @@
 import { useState } from 'react'
-import logo from './logo.svg'
-import Home from './components/Home'
-import Install from './components/Install'
+import Install from './pages/Install'
+import Routing from './Routing';
 
 function App() {
-  const [account, setAccount] = useState();
+  const [account, setAccount] = useState(null);
 
   const connectuser = async () => {
     const [accounto] = await window.ethereum.request({ method: 'eth_requestAccounts' });
     setAccount(accounto);
   };
 
-  if (window.ethereum) {
+  if (window.ethereum) connectuser();
 
-    connectuser();
-
-    return (
-      <div>
-        <Home />
-      </div>
-    );
-
-  } else {
-    return <Install />;
-  }
+  return (
+    account ? <Routing /> : <Install />
+  );
 
 }
+
 
 export default App
