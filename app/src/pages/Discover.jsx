@@ -6,16 +6,17 @@ import loadingImg from '../../assets/image/loading.gif'
 
 const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-const signer = provider.getSigner();
-
-const contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
+var provider;
+var signer;
+var contract;
 
+function Discover() {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+    contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
 
-function Home() {
     const [totalMinted, setTotalMinted] = useState(0);
     const [met, setMetaDataURI] = useState(0);
     useEffect(() => {
@@ -172,4 +173,4 @@ function NftData({ tokenId }) {
 
     );
 }
-export default Home;
+export default Discover;

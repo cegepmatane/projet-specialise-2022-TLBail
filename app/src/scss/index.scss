@@ -1,6 +1,37 @@
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "component/header";
 
-body{
-    background-color: rgb(13, 13, 13);
 
+
+.megaTextHome{
+    font-size: 4.4em;
+    text-align: left;
+}
+
+.installContainer{
+    text-align: center;
+    font-weight: bold;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    h1{
+        margin: 2rem;
+        font-size: 6em;
+        text-align: center;
+    }
+
+    a{
+        font-size: 2em;
+    }
+
+    #logo-container svg {
+        width: 250px;
+        height: auto;
+    }
+      
+    @media only screen and (max-width: 768px) {
+        #logo-container svg {
+          width: 150px;
+          height: auto;
+        }  
+    }
 }

@@ -40,8 +40,8 @@ function Discover() {
                         ➡
                         En Apprendre plus sur goldengames.games
                     </a>
-                </Col>
-            </Row>
+                </Col >
+            </Row >
         </Container >
     );
 
