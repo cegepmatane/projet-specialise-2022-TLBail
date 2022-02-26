@@ -4,7 +4,7 @@ import GoldenGames from '../artifacts/contracts/GoldenGames.sol/GoldenGames.json
 import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup } from 'react-bootstrap'
 import loadingImg from '../../assets/image/loading.gif'
 
-const contractAdress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const contractAdress = "0xD3b28A7Ef328c1fA33d3aE39bF0A2392108D8573";
 
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
