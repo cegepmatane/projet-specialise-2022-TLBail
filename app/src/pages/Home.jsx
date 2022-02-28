@@ -2,8 +2,32 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import NftCard from "../components/NftCard";
 import Nft from "../components/Nft";
 import { Link } from "react-router-dom";
+import { UserContext } from "../components/UserContext"
+import { useState } from "react";
+import { useEffect } from "react";
+
 function Discover() {
 
+    const [nft, setNftToDisplay] = useState(new Nft(1));
+    const [state, setNftState] = useState("fade-in");
+
+    useEffect(() => {
+        createNftToDisplay();
+    }, []);
+
+    const createNftToDisplay = async () => {
+        if (!UserContext.count) {
+            await UserContext.getCount();
+        }
+        setNftToDisplay(new Nft(Math.floor(Math.random() * (UserContext.count - 1)) + 1));
+        setNftState("fade-in");
+        setTimeout(chaoNft, 4000);
+    };
+
+    const chaoNft = () => {
+        setNftState("fade-out");
+        setTimeout(createNftToDisplay, 1100);
+    }
 
     return (
         <Container className="mt-5 text-light">
@@ -31,7 +55,7 @@ function Discover() {
                     </div>
                 </Col>
                 <Col>
-                    <NftCard nft={new Nft(Math.round(Math.random() * 100))} />
+                    <NftCard state={state} nft={nft} />
                 </Col>
             </Row>
             <Row>

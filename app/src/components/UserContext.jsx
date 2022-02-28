@@ -19,6 +19,11 @@ class User {
         this.contractAdress = contractAdress;
     }
 
+    async getCount() {
+        this.count = parseInt(await UserContext.contract.count());
+        this.metaDataURI = `${contentId}/${this.count}.json`;
+    }
+
 }
 
 
