@@ -1,21 +1,12 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
-import GoldenGames from '../artifacts/contracts/GoldenGames.sol/GoldenGames.json';
 import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup } from 'react-bootstrap'
 import loadingImg from '../../assets/image/loading.gif'
-
-const contractAdress = "0xD3b28A7Ef328c1fA33d3aE39bF0A2392108D8573";
-
+import { UserContext } from '../components/UserContext'
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
-var provider;
-var signer;
-var contract;
 
 function Discover() {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    signer = provider.getSigner();
-    contract = new ethers.Contract(contractAdress, GoldenGames.abi, signer);
 
     const [totalMinted, setTotalMinted] = useState(0);
     const [met, setMetaDataURI] = useState(0);
@@ -24,7 +15,7 @@ function Discover() {
     }, []);
 
     const getCount = async () => {
-        const count = parseInt(await contract.count());
+        const count = parseInt(await UserContext.contract.count());
         setTotalMinted(count);
         setMetaDataURI(`${contentId}/${count}.json`);
         console.log("count" + count);
@@ -32,11 +23,11 @@ function Discover() {
 
 
     const mintToken = async () => {
-        const connection = contract.connect(signer);
-        const addr = await signer.getAddress();
+        const connection = UserContext.contract.connect(UserContext.signer);
+        const addr = await UserContext.signer.getAddress();
         console.log(addr);
         console.log(met);
-        contract.payToMint(addr, met, {
+        UserContext.contract.payToMint(addr, met, {
             value: ethers.utils.parseEther('0.05'),
         }).then(result => {
             getCount();
@@ -156,7 +147,7 @@ function NftData({ tokenId }) {
                     <Accordion.Body>
                         {
                             data && data.attributes ? data.attributes.map(
-                                (item) => <p>{JSON.stringify(item)}</p>
+                                (item, i) => <p key={i}>{JSON.stringify(item)}</p>
                             )
                                 :
                                 <div>
