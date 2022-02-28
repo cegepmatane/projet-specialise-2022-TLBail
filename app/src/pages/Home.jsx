@@ -6,10 +6,10 @@ import { UserContext } from "../components/UserContext"
 import { useState } from "react";
 import { useEffect } from "react";
 
-function Discover() {
+function Home() {
 
     const [nft, setNftToDisplay] = useState(new Nft(1));
-    const [state, setNftState] = useState("fade-in");
+    const [animState, setNftState] = useState("fade-in");
 
     useEffect(() => {
         createNftToDisplay();
@@ -55,7 +55,7 @@ function Discover() {
                     </div>
                 </Col>
                 <Col>
-                    <NftCard state={state} nft={nft} />
+                    <NftCard animState={animState} nft={nft} />
                 </Col>
             </Row>
             <Row>
@@ -66,10 +66,27 @@ function Discover() {
                     </a>
                 </Col >
             </Row >
+            <Row>
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+                <NftCard nft={new Nft(3)} variant="full" />
+            </Row>
         </Container >
     );
 
 }
 
 
-export default Discover;
+export default Home;
