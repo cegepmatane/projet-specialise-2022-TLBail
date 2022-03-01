@@ -66,23 +66,7 @@ function Home() {
                     </a>
                 </Col >
             </Row >
-            <Row>
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-                <NftCard nft={new Nft(3)} variant="full" />
-            </Row>
+
         </Container >
     );
 
