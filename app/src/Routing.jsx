@@ -15,7 +15,7 @@ function Routing() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/discover" element={<Discover />} />
-                    <Route path="/nft" element={<Nft />} />
+                    <Route path="/nft/:tokenId" element={<Nft />} />
                     <Route path="/mint" element={<Mint />} />
                 </Routes>
             </BrowserRouter>
