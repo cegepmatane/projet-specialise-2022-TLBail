@@ -125,7 +125,7 @@ function TransactionBlock({ transactionState, buttonAction }) {
                         />
                     </Row>
                     <Row className='justify-content-md-center m-2 display-3'>
-                        Transaction en cour
+                        Transaction en cours
                     </Row>
                 </Container>
             );

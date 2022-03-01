@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Discover from "./pages/Discover";
 import Home from './pages/Home'
@@ -10,7 +10,7 @@ function Routing() {
     return (
 
         <div>
-            <BrowserRouter>
+            <HashRouter>
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -18,7 +18,7 @@ function Routing() {
                     <Route path="/nft/:tokenId" element={<Nft />} />
                     <Route path="/mint" element={<Mint />} />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
 
 
         </div>
