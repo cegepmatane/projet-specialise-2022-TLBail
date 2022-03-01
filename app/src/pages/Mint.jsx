@@ -1,14 +1,72 @@
 import { useState } from 'react';
 import { Container, Row, Alert, Button } from 'react-bootstrap'
 import LoadingGif from '../../assets/image/loading.gif'
-
-
+import { UserContext } from '../components/UserContext';
+import { ethers } from 'ethers';
+import { useEffect } from 'react';
+import NftCard from '../components/NftCard';
+import Nft from '../components/Nft';
+import { Link } from 'react-router-dom';
 
 function Mint() {
 
     const [transactionState, setTransactionState] = useState("none");
 
 
+    const [totalMinted, setTotalMinted] = useState(0);
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        getCount();
+    }, []);
+
+    const getCount = async () => {
+        const count = parseInt(await UserContext.contract.count());
+        setTotalMinted(count);
+        setCount(count);
+    };
+
+
+    const mintToken = async () => {
+        const connection = UserContext.contract.connect(UserContext.signer);
+        const addr = await UserContext.signer.getAddress();
+        if (!UserContext.metaDataURI) await UserContext.getCount();
+        var result = await UserContext.contract.payToMint(addr, UserContext.metaDataURI, {
+            value: ethers.utils.parseEther('0.05'),
+        }).catch(error => {
+            console.log(error);
+        });
+        setTransactionState("inProgress");
+        await result.wait();
+        console.log("transaction result : ");
+        console.log(result);
+        setTransactionState("succes");
+        getCount();
+    };
+
+
+    if (transactionState === "succes") {
+        return (
+            <Container className='text-primary p-2'>
+                <Row className='justify-content-md-center'>
+                    <div style={{ width: "20vh" }}>
+                        <NftCard nft={new Nft(count)} />
+                    </div>
+                </Row>
+                <Row className='justify-content-md-center'>
+                    <h1 className='text-center'>
+                        success
+                    </h1>
+                </Row>
+                <Row className='justify-content-center'>
+                    <div className='d-flex justify-content-center'>
+                        <Link className='linkNavBar btn btn-primary' to={`/nft/${count}`} >
+                            voir mon nft
+                        </Link>
+                    </div >
+                </Row>
+            </Container >
+        );
+    }
     return (
         <Container className="text-light">
             <Row>
@@ -36,7 +94,7 @@ function Mint() {
                 </ul>
             </Row>
             <Row>
-                <TransactionBlock transactionState={transactionState} setTransactionState={setTransactionState} />
+                <TransactionBlock transactionState={transactionState} buttonAction={mintToken} />
             </Row>
         </Container>
     );
@@ -44,7 +102,7 @@ function Mint() {
 }
 
 
-function TransactionBlock({ transactionState, setTransactionState }) {
+function TransactionBlock({ transactionState, buttonAction }) {
 
 
     switch (transactionState) {
@@ -52,7 +110,7 @@ function TransactionBlock({ transactionState, setTransactionState }) {
             return (
                 <div className='d-flex justify-content-center'>
                     <Button variant="primary" size="lg" className='fs-2' onClick={
-                        () => setTransactionState("inProgress")
+                        () => buttonAction()
                     }>
                         Mint
                     </Button>

@@ -25,22 +25,17 @@ function Discover() {
     const mintToken = async () => {
         const connection = UserContext.contract.connect(UserContext.signer);
         const addr = await UserContext.signer.getAddress();
-        console.log(addr);
-        console.log(met);
-        UserContext.contract.payToMint(addr, met, {
+        if (!UserContext.metaDataURI) await UserContext.getCount();
+        var result = await UserContext.contract.payToMint(addr, UserContext.metaDataURI, {
             value: ethers.utils.parseEther('0.05'),
-        }).then(result => {
-            getCount();
-            console.log("transaction result : ");
-            console.log(result);
         }).catch(error => {
             console.log(error);
-        }
-        );
+        });
 
         await result.wait();
-        console.log("tutut");
+        console.log("transaction result : ");
         console.log(result);
+        getCount();
     };
 
     return (
