@@ -1,12 +1,18 @@
+import { useState } from 'react';
 import { Container, Row, Alert, Button } from 'react-bootstrap'
+import LoadingGif from '../../assets/image/loading.gif'
+
 
 
 function Mint() {
 
+    const [transactionState, setTransactionState] = useState("none");
+
+
     return (
         <Container className="text-light">
             <Row>
-                <h1 className='text-center display-1 '>Mint ton nft ! </h1>
+                <div className='text-center display-1 m-4'>Mint ton nft ! </div>
             </Row>
             <Row>
                 <p>
@@ -30,15 +36,49 @@ function Mint() {
                 </ul>
             </Row>
             <Row>
-                <div className='d-flex justify-content-center'>
-                    <Button variant="primary" size="lg" className='fs-'>
-                        Mint
-                    </Button>
-                </div>
+                <TransactionBlock transactionState={transactionState} setTransactionState={setTransactionState} />
             </Row>
         </Container>
     );
 
 }
-            
+
+
+function TransactionBlock({ transactionState, setTransactionState }) {
+
+
+    switch (transactionState) {
+        case "none":
+            return (
+                <div className='d-flex justify-content-center'>
+                    <Button variant="primary" size="lg" className='fs-2' onClick={
+                        () => setTransactionState("inProgress")
+                    }>
+                        Mint
+                    </Button>
+                </div >
+            );
+        case "inProgress":
+            return (
+                <Container fluid>
+                    <Row className='justify-content-md-center m-2'>
+                        <img src={LoadingGif} alt=""
+                            id='imgLoading'
+                        />
+                    </Row>
+                    <Row className='justify-content-md-center m-2 display-3'>
+                        Transaction en cour
+                    </Row>
+                </Container>
+            );
+        default:
+            return (
+                <div>
+                    une erreur est survenue
+                </div>
+            );
+    }
+
+}
+
 export default Mint;
