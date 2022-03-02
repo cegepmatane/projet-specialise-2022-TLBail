@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import NftCard from '../components/NftCard';
 import Nft from '../components/Nft';
 import { Link } from 'react-router-dom';
+import Confetti from '../components/Confetti';
 
 function Mint() {
 
@@ -63,6 +64,9 @@ function Mint() {
                             voir mon nft
                         </Link>
                     </div >
+                </Row>
+                <Row>
+                    <Confetti />
                 </Row>
             </Container >
         );
