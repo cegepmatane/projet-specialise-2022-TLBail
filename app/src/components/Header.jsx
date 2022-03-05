@@ -22,7 +22,7 @@ function Header() {
                         <StyleNavLink link="/mint" text="créer" />
                         <StyleNavLink link="/discover" text="explorer" />
                         <a href='https://github.com/cegepmatane/projet-specialise-2022-TLBail' className='linkNavBar'>
-                            about
+                            à-propos
                         </a>
                         <a href="mailto:theolebail02@gmail.com" className='linkNavBar'>contact</a>
                     </Nav>

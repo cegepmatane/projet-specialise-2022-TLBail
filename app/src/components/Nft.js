@@ -13,6 +13,7 @@ class Nft {
 
 
     async getData() {
+        if (this.data) return data;
         let problem = false;
         var response;
         const fetchas = async () => {
@@ -37,6 +38,11 @@ class Nft {
         return data;
     }
 
+    async getOwner(contract) {
+        if (this.addr) return this.addr;
+        this.addr = await contract.ownerOf(this.tokenId);
+        return this.addr;
+    }
 
 }
 
