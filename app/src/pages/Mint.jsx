@@ -56,35 +56,37 @@ function Mint() {
 }
 
 function TransactionRule({ transactionState, buttonAction }) {
-    <Container className="text-light">
-        <Row>
-            <div className='text-center display-1 m-4'>Mint ton nft ! </div>
-        </Row>
-        <Row>
-            <p>
-                Mint un nft en cliquant sur le bouton Mint.
-                Les frais de création sont de 0.05 eth,
-                une fois la transaction effectuée,
-                un nft est ajouté à ta collection de manières aléatoires.
-                Personne ne sait qu’elle est le prochain nft créer !
-                Tu peux déjà voir les nft mint sur la page explorer.
-                Actuellement les nft des séries suivantes sont obtenables :
-            </p>
-        </Row>
-        <Row className='p-3'>
-            <ul>
-                <li>
-                    Goldengames 1
-                </li>
-                <li>
-                    Goldengames 2
-                </li>
-            </ul>
-        </Row>
-        <Row>
-            <TransactionBlock transactionState={transactionState} buttonAction={buttonAction} />
-        </Row>
-    </Container>
+    return (
+        <Container className="text-light">
+            <Row>
+                <div className='text-center display-1 m-4'>Mint ton nft ! </div>
+            </Row>
+            <Row>
+                <p>
+                    Mint un nft en cliquant sur le bouton Mint.
+                    Les frais de création sont de 0.05 eth,
+                    une fois la transaction effectuée,
+                    un nft est ajouté à ta collection de manières aléatoires.
+                    Personne ne sait qu’elle est le prochain nft créer !
+                    Tu peux déjà voir les nft mint sur la page explorer.
+                    Actuellement les nft des séries suivantes sont obtenables :
+                </p>
+            </Row>
+            <Row className='p-3'>
+                <ul>
+                    <li>
+                        Goldengames 1
+                    </li>
+                    <li>
+                        Goldengames 2
+                    </li>
+                </ul>
+            </Row>
+            <Row>
+                <TransactionBlock transactionState={transactionState} buttonAction={buttonAction} />
+            </Row>
+        </Container>
+    );
 }
 
 
