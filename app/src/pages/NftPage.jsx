@@ -53,7 +53,7 @@ function NftPage() {
                 </div>
             </Row>
             <Row>
-                <Col>
+                <Col className='d-flex justify-content-center'>
                     <img src={nft.img} alt="" />
                 </Col>
                 <Col>
