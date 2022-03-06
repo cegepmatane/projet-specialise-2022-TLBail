@@ -1,7 +1,8 @@
 import loadingImg from '../../assets/image/loading.gif'
 import { useEffect } from "react";
 import { useState } from "react";
-import { Card, Accordion, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, Accordion, ListGroup, ListGroupItem, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom';
 import Nft from "./Nft";
 function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", style = {} }) {
     const [data, setData] = useState(null);
@@ -20,11 +21,23 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", s
         setData(data);
     }
 
+    const onImageError = (error) => {
+        console.log("failed to load image");
+        console.log(error);
+        error.target.src = nft.img + "?t=" + new Date().getTime();
+    }
+
+
 
     return (
         <Card style={style} className={`text-primary ${animState} m-2`} >
-            <Card.Img variant="top" src={nft.img} />
-            <Card.Header className="text-center">Nft # {nft.tokenId}</Card.Header>
+            <Card.Img variant="top" src={nft.img} onError={onImageError} />
+            <Card.Header className="text-center">Nft # {nft.tokenId}
+                <Link className='btn-primary btn m-2' to={`/nft/${nft.tokenId}`} >
+                    voir
+                </Link>
+
+            </Card.Header>
             {variant == "full" && <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header> Données
@@ -43,9 +56,11 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", s
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>}
-        </Card>
+        </Card >
     );
 
 }
+
+
 
 export default NftCard;

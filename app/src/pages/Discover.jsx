@@ -5,7 +5,6 @@ import loadingImg from '../../assets/image/loading.gif'
 import NftCard from '../components/NftCard';
 import { UserContext } from '../components/UserContext'
 import Nft from '../components/Nft'
-const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
 
 function Discover() {
@@ -20,7 +19,13 @@ function Discover() {
         setcount(count);
     };
 
-
+    const nftArray = () => {
+        let array = Array();
+        for (let index = 1; index < count; index++) {
+            array[index] = new Nft(index);
+        }
+        return array;
+    }
 
     return (
         <Container fluid>
@@ -41,14 +46,10 @@ function Discover() {
                         </p>
                     </Alert>
                 </Col>
-
             </Row>
 
-
-
             <Row >
-
-                <Col lg="3" className='bg-dark text-light sticky-form'>
+                <Col lg="3" className='bg-dark text-light'>
                     <h3>Filtre</h3>
                     <Form
                         className='d-flex justify-content-center flex-column'>
@@ -72,17 +73,7 @@ function Discover() {
                     </Form>
                 </Col>
                 <Col>
-                    <CardGroup>
-
-                        {Array(count).fill(0).map((_, i) => (
-
-                            <div key={i}>
-                                {
-                                    i > 0 && <NftCard style={{ width: '18rem' }} nft={new Nft(i)} />
-                                }
-                            </div>
-                        ))}
-                    </CardGroup>
+                    <NftList nftArray={nftArray()} />
                 </Col>
             </Row>
 
@@ -91,6 +82,24 @@ function Discover() {
 
     )
 
+}
+
+
+function NftList({ nftArray }) {
+    return (
+        <CardGroup>
+            {nftArray.map((_, i) => (
+                <div key={i}>
+                    {
+                        i > 0 && <NftCard
+                            style={{ width: '18rem' }}
+                            nft={new Nft(i)}
+                            variant="medium" />
+                    }
+                </div>
+            ))}
+        </CardGroup>
+    );
 }
 
 
