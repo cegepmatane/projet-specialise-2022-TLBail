@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Card, Accordion, ListGroup, ListGroupItem } from "react-bootstrap"
 import Nft from "./Nft";
-function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small" }) {
+function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", style = {} }) {
     const [data, setData] = useState(null);
 
 
@@ -22,7 +22,7 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small" })
 
 
     return (
-        <Card className={`text-primary ${animState}`} >
+        <Card style={style} className={`text-primary ${animState} m-2`} >
             <Card.Img variant="top" src={nft.img} />
             <Card.Header className="text-center">Nft # {nft.tokenId}</Card.Header>
             {variant == "full" && <Accordion>
