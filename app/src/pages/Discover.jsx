@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
-import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup } from 'react-bootstrap'
+import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup, Form, FloatingLabel } from 'react-bootstrap'
 import loadingImg from '../../assets/image/loading.gif'
 import { UserContext } from '../components/UserContext'
 const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
@@ -8,62 +8,80 @@ const contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
 
 function Discover() {
 
-    const [totalMinted, setTotalMinted] = useState(0);
-    const [met, setMetaDataURI] = useState(0);
+    const [count, setcount] = useState(0);
     useEffect(() => {
         getCount();
     }, []);
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
-        setTotalMinted(count);
+        setcount(count);
         setMetaDataURI(`${contentId}/${count}.json`);
         console.log("count" + count);
     };
 
 
-    const mintToken = async () => {
-        const connection = UserContext.contract.connect(UserContext.signer);
-        const addr = await UserContext.signer.getAddress();
-        if (!UserContext.metaDataURI) await UserContext.getCount();
-        var result = await UserContext.contract.payToMint(addr, UserContext.metaDataURI, {
-            value: ethers.utils.parseEther('0.05'),
-        }).catch(error => {
-            console.log(error);
-        });
-
-        await result.wait();
-        console.log("transaction result : ");
-        console.log(result);
-        getCount();
-    };
 
     return (
-        <Container>
+        <Container fluid>
 
-            <Row className='m-2'>
-                <Alert variant="dark">
-                    <Alert.Heading className='text-center'>Home</Alert.Heading>
-                </Alert>
+            <Row className='justify-content-md-center m-2'>
+                <Col xs lg="2">
+                    <Alert variant="dark">
+                        <Alert.Heading className='text-center'>234</Alert.Heading>
+                        <p className='text-center m-0 p-0'>
+                            nombre de nft mint
+                        </p>
+                    </Alert>
+                </Col>
+                <Col xs lg="2">
+                    <Alert variant="dark">
+                        <Alert.Heading className='text-center'>134</Alert.Heading>
+                        <p className='text-center m-0 p-0'>
+                            nombre de propriétaire
+                        </p>
+                    </Alert>
+                </Col>
+
             </Row>
 
-            <Row className='m-2'>
-
-                <Button variant="primary" className='fit' onClick={mintToken}>
-                    mintToken !
-                </Button>
-            </Row>
 
 
-            <Row className='m-2 p-2'>
-                <CardGroup>
+            <Row >
 
-                    {Array(totalMinted).fill(0).map((_, i) => (
-                        <div key={i}>
-                            <NftImage tokenId={i} totalMinted={totalMinted} />
-                        </div>
-                    ))}
-                </CardGroup>
+                <Col lg="3" className='bg-dark text-light sticky-form'>
+                    <h3>Filtre</h3>
+                    <Form
+                        className='d-flex justify-content-center flex-column'>
+                        <Form.Switch label="voir mes nft"
+                            className='fs-3' />
+                        <FloatingLabel
+                            controlId="searchIdtoken"
+                            label="recherché par id"
+                            className="text-dark mt-4"
+                        >
+                            <Form.Control type="number" placeholder="1" />
+                        </FloatingLabel>
+                        <FloatingLabel
+                            controlId="searchAdress"
+                            label="recherché par adress du propriétaire"
+                            className='text-dark mt-4'
+                        >
+                            <Form.Control type="text" placeholder="0x" />
+                        </FloatingLabel>
+
+                    </Form>
+                </Col>
+                <Col>
+                    <CardGroup>
+
+                        {Array(count).fill(0).map((_, i) => (
+                            <div key={i}>
+                                <NftImage tokenId={i} count={count} />
+                            </div>
+                        ))}
+                    </CardGroup>
+                </Col>
             </Row>
 
 
@@ -73,7 +91,7 @@ function Discover() {
 
 }
 
-function NftImage({ tokenId, totalMinted }) {
+function NftImage({ tokenId, count }) {
     if (tokenId == 0) return (<div></div>);
     const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.jpg`;
 
