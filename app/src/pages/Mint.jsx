@@ -43,63 +43,48 @@ function Mint() {
 
 
     if (transactionState === "succes") {
+        return (<Succes nft={nft} />);
+    } else {
         return (
-            <Container className='text-primary p-2'>
-                <Row className='justify-content-md-center'>
-                    <div style={{ width: "20vh" }}>
-                        <NftCard nft={nft} />
-                    </div>
-                </Row>
-                <Row className='justify-content-md-center'>
-                    <h1 className='text-center'>
-                        success
-                    </h1>
-                </Row>
-                <Row className='justify-content-center'>
-                    <div className='d-flex justify-content-center'>
-                        <Link className='linkNavBar btn btn-primary' to={`/nft/${nft.tokenId}`} >
-                            voir mon nft
-                        </Link>
-                    </div >
-                </Row>
-                <Row>
-                    <Confetti />
-                </Row>
-            </Container >
+            <TransactionRule
+                transactionState={transactionState}
+                buttonAction={mintToken}
+            />
         );
     }
-    return (
-        <Container className="text-light">
-            <Row>
-                <div className='text-center display-1 m-4'>Mint ton nft ! </div>
-            </Row>
-            <Row>
-                <p>
-                    Mint un nft en cliquant sur le bouton Mint.
-                    Les frais de création sont de 0.05 eth,
-                    une fois la transaction effectuée,
-                    un nft est ajouté à ta collection de manières aléatoires.
-                    Personne ne sait qu’elle est le prochain nft créer !
-                    Tu peux déjà voir les nft mint sur la page explorer.
-                    Actuellement les nft des séries suivantes sont obtenables :
-                </p>
-            </Row>
-            <Row className='p-3'>
-                <ul>
-                    <li>
-                        Goldengames 1
-                    </li>
-                    <li>
-                        Goldengames 2
-                    </li>
-                </ul>
-            </Row>
-            <Row>
-                <TransactionBlock transactionState={transactionState} buttonAction={mintToken} />
-            </Row>
-        </Container>
-    );
 
+}
+
+function TransactionRule({ transactionState, buttonAction }) {
+    <Container className="text-light">
+        <Row>
+            <div className='text-center display-1 m-4'>Mint ton nft ! </div>
+        </Row>
+        <Row>
+            <p>
+                Mint un nft en cliquant sur le bouton Mint.
+                Les frais de création sont de 0.05 eth,
+                une fois la transaction effectuée,
+                un nft est ajouté à ta collection de manières aléatoires.
+                Personne ne sait qu’elle est le prochain nft créer !
+                Tu peux déjà voir les nft mint sur la page explorer.
+                Actuellement les nft des séries suivantes sont obtenables :
+            </p>
+        </Row>
+        <Row className='p-3'>
+            <ul>
+                <li>
+                    Goldengames 1
+                </li>
+                <li>
+                    Goldengames 2
+                </li>
+            </ul>
+        </Row>
+        <Row>
+            <TransactionBlock transactionState={transactionState} buttonAction={buttonAction} />
+        </Row>
+    </Container>
 }
 
 
@@ -139,5 +124,34 @@ function TransactionBlock({ transactionState, buttonAction }) {
     }
 
 }
+
+function Succes({ nft }) {
+    return (
+        <Container className='text-primary p-2'>
+            <Row className='justify-content-md-center'>
+                <div style={{ width: "20vh" }}>
+                    <NftCard nft={nft} />
+                </div>
+            </Row>
+            <Row className='justify-content-md-center'>
+                <h1 className='text-center'>
+                    success
+                </h1>
+            </Row>
+            <Row className='justify-content-center'>
+                <div className='d-flex justify-content-center'>
+                    <Link className='linkNavBar btn btn-primary' to={`/nft/${nft.tokenId}`} >
+                        voir mon nft
+                    </Link>
+                </div >
+            </Row>
+            <Row>
+                <Confetti />
+            </Row>
+        </Container >
+    );
+}
+
+
 
 export default Mint;
