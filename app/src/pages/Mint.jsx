@@ -13,24 +13,21 @@ function Mint() {
 
     const [transactionState, setTransactionState] = useState("none");
 
-
-    const [totalMinted, setTotalMinted] = useState(0);
-    const [count, setCount] = useState(0);
+    const [nft, setNft] = useState(null);
     useEffect(() => {
         getCount();
     }, []);
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
-        setTotalMinted(count);
-        setCount(count);
+        setNft(new Nft(count - 1));
     };
 
 
     const mintToken = async () => {
         const connection = UserContext.contract.connect(UserContext.signer);
         const addr = await UserContext.signer.getAddress();
-        if (!UserContext.metaDataURI) await UserContext.getCount();
+        await UserContext.getCount();
         var result = await UserContext.contract.payToMint(addr, UserContext.metaDataURI, {
             value: ethers.utils.parseEther('0.05'),
         }).catch(error => {
@@ -50,7 +47,7 @@ function Mint() {
             <Container className='text-primary p-2'>
                 <Row className='justify-content-md-center'>
                     <div style={{ width: "20vh" }}>
-                        <NftCard nft={new Nft(count)} />
+                        <NftCard nft={nft} />
                     </div>
                 </Row>
                 <Row className='justify-content-md-center'>
@@ -60,7 +57,7 @@ function Mint() {
                 </Row>
                 <Row className='justify-content-center'>
                     <div className='d-flex justify-content-center'>
-                        <Link className='linkNavBar btn btn-primary' to={`/nft/${count}`} >
+                        <Link className='linkNavBar btn btn-primary' to={`/nft/${nft.tokenId}`} >
                             voir mon nft
                         </Link>
                     </div >
