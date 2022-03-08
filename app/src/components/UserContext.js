@@ -20,8 +20,17 @@ class User {
     }
 
     async getCount() {
-        this.count = parseInt(await UserContext.contract.count());
+        if (!this.contract) {
+            this.count = 0;
+            return;
+        }
+        this.count = parseInt(await this.contract.count());
         this.metaDataURI = `${contentId}/${this.count}.json`;
+    }
+
+    async getSignerAdress() {
+        this.signerAddress = await this.signer.getAddress();
+        return this.signerAddress;
     }
 
 }

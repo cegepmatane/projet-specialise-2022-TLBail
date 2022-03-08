@@ -5,26 +5,43 @@ import loadingImg from '../../assets/image/loading.gif'
 import NftCard from '../components/NftCard';
 import { UserContext } from '../components/UserContext'
 import Nft from '../components/Nft'
+import { BlockChain } from '../components/BlockChain';
 
 
 function Discover() {
 
     const [count, setcount] = useState(0);
+    const [onlyMynft, setOnlyMyNft] = useState(false);
+    const [nftArray, setNftArray] = useState([]);
+    const [searchAdress, setSearchAdress] = useState("");
+
     useEffect(() => {
         getCount();
-    }, []);
+        getnftArray();
+    }, [onlyMynft, searchAdress]);
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
         setcount(count);
     };
 
-    const nftArray = () => {
-        let array = Array();
-        for (let index = 1; index < count; index++) {
-            array[index] = new Nft(index);
+    BlockChain.setListener((array) => {
+        setNftArray(array);
+    });
+
+
+    const getnftArray = async () => {
+        BlockChain.getNfts();
+        if (onlyMynft) {
+            BlockChain.onlyMyNft();
         }
-        return array;
+        if (searchAdress) {
+            BlockChain.searchAdress(searchAdress);
+        }
+    }
+
+    function handleChange(event) {
+        setSearchAdress(event.target.value)
     }
 
     return (
@@ -54,7 +71,8 @@ function Discover() {
                     <Form
                         className='d-flex justify-content-center flex-column'>
                         <Form.Switch label="voir mes nft"
-                            className='fs-3' />
+                            className='fs-3'
+                            onChange={() => setOnlyMyNft(!onlyMynft)} />
                         <FloatingLabel
                             controlId="searchIdtoken"
                             label="recherché par id"
@@ -66,6 +84,7 @@ function Discover() {
                             controlId="searchAdress"
                             label="recherché par adress du propriétaire"
                             className='text-dark mt-4'
+                            onChange={handleChange}
                         >
                             <Form.Control type="text" placeholder="0x" />
                         </FloatingLabel>
@@ -73,7 +92,7 @@ function Discover() {
                     </Form>
                 </Col>
                 <Col>
-                    <NftList nftArray={nftArray()} />
+                    <NftList nftArray={nftArray} />
                 </Col>
             </Row>
 
