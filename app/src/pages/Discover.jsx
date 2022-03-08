@@ -14,11 +14,12 @@ function Discover() {
     const [onlyMynft, setOnlyMyNft] = useState(false);
     const [nftArray, setNftArray] = useState([]);
     const [searchAdress, setSearchAdress] = useState("");
+    const [searchId, setSearchId] = useState(null);
 
     useEffect(() => {
         getCount();
         getnftArray();
-    }, [onlyMynft, searchAdress]);
+    }, [onlyMynft, searchAdress, searchId]);
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
@@ -38,10 +39,25 @@ function Discover() {
         if (searchAdress) {
             BlockChain.searchAdress(searchAdress);
         }
+        if (searchId) {
+            console.log(searchId);
+            BlockChain.searchId(searchId);
+        }
     }
 
-    function handleChange(event) {
+    function handleChangeAdress(event) {
         setSearchAdress(event.target.value)
+    }
+
+    function handleChangeId(event) {
+        let value = event.target.value;
+        if (value) {
+            console.log(value);
+            setSearchId(event.target.value);
+        } else {
+            console.log(value);
+            setSearchId(null);
+        }
     }
 
     return (
@@ -77,6 +93,7 @@ function Discover() {
                             controlId="searchIdtoken"
                             label="recherché par id"
                             className="text-dark mt-4"
+                            onChange={handleChangeId}
                         >
                             <Form.Control type="number" placeholder="1" />
                         </FloatingLabel>
@@ -84,7 +101,7 @@ function Discover() {
                             controlId="searchAdress"
                             label="recherché par adress du propriétaire"
                             className='text-dark mt-4'
-                            onChange={handleChange}
+                            onChange={handleChangeAdress}
                         >
                             <Form.Control type="text" placeholder="0x" />
                         </FloatingLabel>
@@ -107,14 +124,12 @@ function Discover() {
 function NftList({ nftArray }) {
     return (
         <CardGroup>
-            {nftArray.map((_, i) => (
+            {nftArray.map((nft, i) => (
                 <div key={i}>
-                    {
-                        i > 0 && <NftCard
-                            style={{ width: '18rem' }}
-                            nft={new Nft(i)}
-                            variant="medium" />
-                    }
+                    <NftCard
+                        style={{ width: '18rem' }}
+                        nft={nft}
+                        variant="medium" />
                 </div>
             ))}
         </CardGroup>
