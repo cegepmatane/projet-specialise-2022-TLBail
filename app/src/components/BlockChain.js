@@ -31,8 +31,9 @@ class BlockChaine {
     async searchAdress(nfts, searchAdress) {
         let array = Array();
         for (const nft of nfts) {
-            if ((await nft.getOwner(UserContext.contract))
-                == searchAdress) {
+            let owner = await nft.getOwner(UserContext.contract);
+            if (owner == searchAdress) {
+                console.log(owner + " | " + searchAdress);
                 array.push(nft);
             }
         }
@@ -44,6 +45,7 @@ class BlockChaine {
         let array = Array();
         nfts.forEach(nft => {
             if (nft.tokenId == tokenId) {
+                console.log(nft.tokenId + " | " + tokenId);
                 array.push(nft);
             }
         });

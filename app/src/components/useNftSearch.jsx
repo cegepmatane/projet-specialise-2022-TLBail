@@ -2,7 +2,7 @@ import { BlockChain } from './BlockChain'
 import { useEffect, useState } from 'react'
 import Nft from './Nft';
 
-function useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress) {
+function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress) {
 
     const [loading, setLoading] = useState(false);
     const [nfts, setNfts] = useState([]);
@@ -21,6 +21,13 @@ function useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress) {
     }, [pageNumber, onlyMyNft, searchAdress, searchId])
 
     const getData = async () => {
+        if (searchId && !searchAdress && !onlyMyNft) {
+            console.log("skip");
+            setNfts([new Nft(searchId)]);
+            setLoading(false);
+            return;
+        }
+
         let data;
         data = await BlockChain.getSpecifiedNfts(pageNumber)
         if (onlyMyNft) {
@@ -34,13 +41,23 @@ function useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress) {
         }
 
 
+
         if (data && data.length > 0) {
             console.log(data);
             setNfts((nfts) => {
                 return [...nfts, ...data];
             });
+
+            setLoading(false);
+        } else if (searchId && nfts.length > 0) {
+            setLoading(false);
+        } else {
+            setTimeout(() => {
+                setPageNumber(pageNumber => {
+                    return pageNumber + 1;
+                })
+            }, 100);
         }
-        setLoading(false);
     }
 
     return { error, loading, nfts, hasMore };

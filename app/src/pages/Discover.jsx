@@ -4,7 +4,7 @@ import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup, Form, F
 import NftCard from '../components/NftCard';
 import { UserContext } from '../components/UserContext'
 import useNftSearch from '../components/useNftSearch';
-
+import LoadingImg from '../../assets/image/loading.gif';
 
 function Discover() {
 
@@ -15,7 +15,7 @@ function Discover() {
     const [pageNumber, setPageNumber] = useState(1);
 
     const { nfts, hasMore, error, loading }
-        = useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress);
+        = useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress);
 
 
     const observer = useRef(null);
@@ -120,12 +120,7 @@ function Discover() {
                 </Col>
                 <Col>
                     <NftList nftArray={nfts} lastNft={lastNft} />
-                    {
-                        loading &&
-                        <Alert variant="info">
-                            chargement...
-                        </Alert>
-                    }
+                    {loading && <LoadingBox />}
                 </Col>
             </Row>
 
@@ -136,6 +131,14 @@ function Discover() {
 
 }
 
+function LoadingBox() {
+    return (
+        <div className='d-flex justify-content-center'>
+            <img src={LoadingImg} alt="" />
+        </div>
+
+    );
+}
 
 function NftList({ nftArray, lastNft }) {
 
