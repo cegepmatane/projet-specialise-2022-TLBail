@@ -28,17 +28,15 @@ class BlockChaine {
         return array;
     }
 
-    async searchAdress(searchAdress) {
-        let array = [];
-        for (let index = 1; index < this.nfts.length; index++) {
-            const element = this.nfts[index];
-            if ((await element.getOwner(UserContext.contract))
+    async searchAdress(nfts, searchAdress) {
+        let array = Array();
+        for (const nft of nfts) {
+            if ((await nft.getOwner(UserContext.contract))
                 == searchAdress) {
-                array.push(element);
+                array.push(nft);
             }
         }
-        this.nfts = array;
-        this.listener(this.nfts);
+        return array;
     }
 
 

@@ -23,12 +23,16 @@ function useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress) {
     const getData = async () => {
         let data;
         data = await BlockChain.getSpecifiedNfts(pageNumber)
-        if (searchId) {
-            data = BlockChain.searchId(data, searchId);
-        }
         if (onlyMyNft) {
             data = await BlockChain.onlyMyNft(data);
         }
+        if (searchAdress) {
+            data = await BlockChain.searchAdress(data, searchAdress);
+        }
+        if (searchId) {
+            data = BlockChain.searchId(data, searchId);
+        }
+
 
         if (data && data.length > 0) {
             console.log(data);
