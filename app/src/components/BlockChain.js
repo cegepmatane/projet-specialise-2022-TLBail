@@ -3,46 +3,29 @@ import Nft from './Nft';
 
 class BlockChaine {
 
-    constructor() {
-        this.nfts = Array();
-        this.getNfts();
-        this.setListener = (listener) => {
-            this.listener = listener;
-        }
-        this.bob = "bob";
-
-    }
-
-
-    async getNfts() {
-        if (!UserContext.count) {
-            await UserContext.getCount();
-        }
-        let count = UserContext.count;
-        for (let index = 1; index < count; index++) {
+    async getSpecifiedNfts(pageNumber) {
+        let array = Array();
+        for (let index = (pageNumber - 1) * 10 + 1; index <= pageNumber * 10; index++) {
             let nft = new Nft(index);
-            this.nfts[index] = nft;
+            array.push(nft);
         }
-        if (this.listener) {
-            this.listener(this.nfts);
-        }
+        console.log(array);
+        return array;
+
     }
 
-    async onlyMyNft() {
-        let array = [];
-        // this.listener(array);
-
+    async onlyMyNft(nfts) {
         if (!UserContext.signerAddress) {
             await UserContext.getSignerAdress();
         }
-        for (let index = 1; index < this.nfts.length; index++) {
-            const element = this.nfts[index];
-            if (await this.ismyNft(element)) {
-                array.push(element);
+        let array = Array();
+        for (const nft of nfts) {
+            if (await this.ismyNft(nft)) {
+                array.push(nft);
             }
         }
-        this.nfts = array;
-        this.listener(this.nfts);
+        console.log(array);
+        return array;
     }
 
     async searchAdress(searchAdress) {
@@ -59,23 +42,25 @@ class BlockChaine {
     }
 
 
-    async searchId(tokenId) {
-        let array = [];
-        for (let index = 1; index < this.nfts.length; index++) {
-            const element = this.nfts[index];
-            if ((await element.tokenId)
-                == tokenId) {
-                array.push(element);
+    searchId(nfts, tokenId) {
+        let array = Array();
+        nfts.forEach(nft => {
+            if (nft.tokenId == tokenId) {
+                array.push(nft);
             }
-        }
-        this.nfts = array;
-        console.log(this.nfts);
-        this.listener(this.nfts);
+        });
+        return array;
     }
 
     async ismyNft(nft) {
-        let owner = await nft.getOwner(UserContext.contract);
-        return owner == UserContext.signerAddress;
+        let owner = await nft.getOwner(UserContext.contract).catch(
+
+        );
+        if (owner) {
+            return owner == UserContext.signerAddress;
+        } else {
+            return null;
+        }
     }
 
 }

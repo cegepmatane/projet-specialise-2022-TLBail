@@ -44,7 +44,6 @@ class Nft {
             var noOwner = false;
             this.addr = await contract.ownerOf(this.tokenId).catch((error) => {
                 if (error.data.code == 3) {
-                    console.log("no owner");
                     noOwner = true;
                 }
             });

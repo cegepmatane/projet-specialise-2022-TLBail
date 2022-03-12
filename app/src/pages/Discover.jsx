@@ -1,63 +1,72 @@
 import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup, Form, FloatingLabel } from 'react-bootstrap'
-import loadingImg from '../../assets/image/loading.gif'
 import NftCard from '../components/NftCard';
 import { UserContext } from '../components/UserContext'
-import Nft from '../components/Nft'
-import { BlockChain } from '../components/BlockChain';
+import useNftSearch from '../components/useNftSearch';
 
 
 function Discover() {
 
     const [count, setcount] = useState(0);
-    const [onlyMynft, setOnlyMyNft] = useState(false);
-    const [nftArray, setNftArray] = useState([]);
+    const [onlyMyNft, setOnlyMyNft] = useState(false);
     const [searchAdress, setSearchAdress] = useState("");
     const [searchId, setSearchId] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+
+    const { nfts, hasMore, error, loading }
+        = useNftSearch(pageNumber, onlyMyNft, searchId, searchAdress);
+
+
+    const observer = useRef(null);
+    const lastNft = useCallback((node) => {
+        if (loading) return;
+        if (observer.current) {
+            console.log(observer.current);
+            observer.current.disconnect();
+        }
+        observer.current = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                console.log("visible");
+                setPageNumber((pageNumber) => {
+                    console.log("pageNumber" + pageNumber + " + 1");
+                    return pageNumber + 1;
+                });
+            }
+        })
+        if (node) {
+            observer.current.observe(node);
+        }
+    }, [loading, hasMore]);
 
     useEffect(() => {
         getCount();
-        getnftArray();
-    }, [onlyMynft, searchAdress, searchId]);
+    }, []);
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
         setcount(count);
     };
 
-    BlockChain.setListener((array) => {
-        setNftArray(array);
-    });
-
-
-    const getnftArray = async () => {
-        BlockChain.getNfts();
-        if (onlyMynft) {
-            BlockChain.onlyMyNft();
-        }
-        if (searchAdress) {
-            BlockChain.searchAdress(searchAdress);
-        }
-        if (searchId) {
-            console.log(searchId);
-            BlockChain.searchId(searchId);
-        }
-    }
-
     function handleChangeAdress(event) {
-        setSearchAdress(event.target.value)
+        setSearchAdress(event.target.value);
+        setPageNumber(1);
+
     }
 
     function handleChangeId(event) {
+        setPageNumber(1);
         let value = event.target.value;
         if (value) {
-            console.log(value);
             setSearchId(event.target.value);
         } else {
-            console.log(value);
             setSearchId(null);
         }
+    }
+
+    function handleOnlyMyNft(event) {
+        setOnlyMyNft((onlyMyNft) => !onlyMyNft);
+        setPageNumber(1);
     }
 
     return (
@@ -66,7 +75,8 @@ function Discover() {
             <Row className='justify-content-md-center m-2'>
                 <Col xs lg="2">
                     <Alert variant="dark">
-                        <Alert.Heading className='text-center'>{count}</Alert.Heading>                        <p className='text-center m-0 p-0'>
+                        <Alert.Heading className='text-center'>{count}</Alert.Heading>
+                        <p className='text-center m-0 p-0'>
                             nombre de nft mint
                         </p>
                     </Alert>
@@ -88,7 +98,7 @@ function Discover() {
                         className='d-flex justify-content-center flex-column'>
                         <Form.Switch label="voir mes nft"
                             className='fs-3'
-                            onChange={() => setOnlyMyNft(!onlyMynft)} />
+                            onChange={handleOnlyMyNft} />
                         <FloatingLabel
                             controlId="searchIdtoken"
                             label="recherché par id"
@@ -109,7 +119,13 @@ function Discover() {
                     </Form>
                 </Col>
                 <Col>
-                    <NftList nftArray={nftArray} />
+                    <NftList nftArray={nfts} lastNft={lastNft} />
+                    {
+                        loading &&
+                        <Alert variant="info">
+                            chargement...
+                        </Alert>
+                    }
                 </Col>
             </Row>
 
@@ -121,16 +137,26 @@ function Discover() {
 }
 
 
-function NftList({ nftArray }) {
+function NftList({ nftArray, lastNft }) {
+
     return (
         <CardGroup>
             {nftArray.map((nft, i) => (
-                <div key={i}>
-                    <NftCard
-                        style={{ width: '18rem' }}
-                        nft={nft}
-                        variant="medium" />
-                </div>
+                i != nftArray.length - 1 ?
+                    <div key={i}>
+                        <NftCard
+                            style={{ width: '18rem' }}
+                            nft={nft}
+                            variant="medium" />
+                    </div>
+                    :
+                    <div ref={lastNft} key={i}>
+                        <NftCard
+                            style={{ width: '18rem' }}
+                            nft={nft}
+                            variant="medium" />
+                    </div>
+
             ))}
         </CardGroup>
     );
