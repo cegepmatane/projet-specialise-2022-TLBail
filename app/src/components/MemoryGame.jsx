@@ -152,7 +152,7 @@ function MemoryCard({ card, handleClick }) {
     const onImageError = (error) => {
         console.log("failed to load image");
         console.log(error);
-        error.target.src = nft.img + "?t=" + new Date().getTime();
+        error.target.src = card.nft.img + "?t=" + new Date().getTime();
     }
 
 
