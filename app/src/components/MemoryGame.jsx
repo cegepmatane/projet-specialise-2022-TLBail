@@ -161,16 +161,16 @@ function MemoryCard({ card, handleClick }) {
             <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <Card>
-                        <Card.Img variant="top" src={card.nft.img} onError={onImageError} />
+                        <img src={card.nft.img} onError={onImageError} />
                     </Card>
                 </div>
-                <div class="flip-card-back">
+                <div className="flip-card-back">
                     <Card>
-                        <Card.Img variant="top" src={picsum} onError={onImageError} />
+                        <Card.Img variant="top" src={picsum} />
                     </Card>
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 
