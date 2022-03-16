@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Nft from '../components/Nft';
 import loadingImg from '../../assets/image/loading.gif'
 import { UserContext } from '../components/UserContext';
+import MemoryGame from '../components/MemoryGame';
 
 function NftPage() {
 
@@ -112,6 +113,7 @@ function NftPage() {
                 </Col>
             </Row>
 
+            <MemoryGame tokenId={tokenId} />
         </Container>
     );
 }

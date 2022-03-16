@@ -9,6 +9,13 @@ class Nft {
         this.img = `https://gateway.pinata.cloud/ipfs/${this.contentId}/${tokenId}.jpg`;
         this.metaDataURI = `https://gateway.pinata.cloud/ipfs/${this.contentId}/${tokenId}.json`;
 
+
+    }
+
+    preloadImage() {
+        console.log("preloding..");
+        const img = new Image();
+        img.src = this.img;
     }
 
 
