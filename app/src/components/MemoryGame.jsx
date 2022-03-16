@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Card, CardGroup, Container, Col, Row } from "react-bootstrap";
+import { Card, CardGroup, Container, Col, Row, Button } from "react-bootstrap";
 import Nft from "./Nft";
+import Confetti from "../components/Confetti"
 function MemoryGame({ tokenId }) {
 
 
@@ -33,6 +34,7 @@ function MemoryGame({ tokenId }) {
     const [cardChoix1, setCardChoix1] = useState(null);
     const [cardChoix2, setCardChoix2] = useState(null);
     const [needToReset, setNeedToReset] = useState(false);
+
 
     useEffect(() => {
         if (cardChoix1 && cardChoix2) {
@@ -119,6 +121,13 @@ function MemoryGame({ tokenId }) {
         setNeedToReset(false);
     }
 
+    const nbCardDiscover = () => {
+        let total = 0;
+        for (const card of cards) {
+            if (card.unlocked) total++;
+        }
+        return parseInt(total);
+    }
 
     return (
         <>
@@ -133,6 +142,7 @@ function MemoryGame({ tokenId }) {
                 }
                 )}
             </div>
+            {nbCardDiscover() == cards.length && <Confetti />}
         </>
     );
 
