@@ -125,7 +125,9 @@ function MemoryGame({ tokenId }) {
             <h1>
                 Memory Game id {tokenId} to {parseInt(tokenId) + 8}:
             </h1>
-            <div className="text-primary flex-wrap d-flex justify-content-center">
+            <div className="text-primary flex-wrap d-flex justify-content-center"
+                style={{ height: "80vh" }}
+            >
                 {cards.map((element) => {
                     return (<MemoryCard key={element.id} card={element} handleClick={onCardClick} />);
                 }
@@ -140,11 +142,11 @@ function MemoryCard({ card, handleClick }) {
 
     const picsum = "https://picsum.photos/500";
 
-    var img;
+    var show;
     if (card.state == true || card.unlocked == true) {
-        img = card.nft.img;
+        show = "";
     } else {
-        img = picsum;
+        show = "active";
     }
 
     const onImageError = (error) => {
@@ -155,10 +157,19 @@ function MemoryCard({ card, handleClick }) {
 
 
     return (
-        <div className="memoryCard" onClick={() => handleClick(card.id)}>
-            <Card>
-                <Card.Img variant="top" src={img} onError={onImageError} />
-            </Card>
+        <div className={`memoryCard flip-card ${show}`} onClick={() => handleClick(card.id)}>
+            <div className="flip-card-inner">
+                <div className="flip-card-front">
+                    <Card>
+                        <Card.Img variant="top" src={card.nft.img} onError={onImageError} />
+                    </Card>
+                </div>
+                <div class="flip-card-back">
+                    <Card>
+                        <Card.Img variant="top" src={picsum} onError={onImageError} />
+                    </Card>
+                </div>
+            </div>
         </div>
 
     );
