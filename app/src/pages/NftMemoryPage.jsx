@@ -84,10 +84,16 @@ function NftMemoryPage() {
             </Row>
             <Row>
                 {
-                    (data && ismyNft) ? <MemoryGame tokenIds={data} /> :
-                        <Alert variant="danger">
-                            ce nft n'a pas encore été débloqué !
-                        </Alert>
+                    (data && data.length > 0 && ismyNft) ? <MemoryGame tokenIds={data} /> :
+                        (!data || data.length == 0) ?
+                            <Alert variant="danger">
+                                ce nft n'a pas encore été débloqué !
+                            </Alert>
+                            :
+                            <Alert variant="danger">
+                                tu doit possédé ce nft pour joué
+                            </Alert>
+
                 }
             </Row>
         </Container>
