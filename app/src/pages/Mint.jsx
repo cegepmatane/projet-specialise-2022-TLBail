@@ -25,6 +25,35 @@ function Mint() {
 
 
     const mintToken = async () => {
+        if (Math.floor(Math.random() * 2) == 1) {
+            mintClassicToken();
+        } else {
+            mintClassicToken();
+        }
+
+    };
+
+    const mintMemoryToken = async () => {
+        UserContext.setSerie("memory");
+        const connection = UserContext.contract.connect(UserContext.signer);
+        const addr = await UserContext.signer.getAddress();
+        await UserContext.getCount();
+        var result = await UserContext.contract.payToMint({
+            value: ethers.utils.parseEther('0.05'),
+        }).catch(error => {
+            console.log(error);
+        });
+        setTransactionState("inProgress");
+        await result.wait();
+        console.log("transaction result : ");
+        console.log(result);
+        setTransactionState("succes");
+        getCount();
+
+    }
+
+    const mintClassicToken = async () => {
+        UserContext.setSerie("classic");
         const connection = UserContext.contract.connect(UserContext.signer);
         const addr = await UserContext.signer.getAddress();
         await UserContext.getCount();
@@ -39,7 +68,7 @@ function Mint() {
         console.log(result);
         setTransactionState("succes");
         getCount();
-    };
+    }
 
 
     if (transactionState === "succes") {
@@ -75,10 +104,10 @@ function TransactionRule({ transactionState, buttonAction }) {
             <Row className='p-3'>
                 <ul>
                     <li>
-                        Goldengames 1
+                        Goldengames Classic
                     </li>
                     <li>
-                        Goldengames 2
+                        Goldengames memory
                     </li>
                 </ul>
             </Row>

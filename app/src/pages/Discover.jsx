@@ -1,8 +1,6 @@
-import { ethers } from 'ethers';
 import { Component, useCallback, useEffect, useRef, useState } from 'react';
 import { Accordion, Nav, Container, Alert, Col, Row, Card, Button, CardGroup, Form, FloatingLabel } from 'react-bootstrap'
 import NftCard from '../components/NftCard';
-import { UserContext } from '../components/UserContext'
 import useNftSearch from '../components/useNftSearch';
 import LoadingImg from '../../assets/image/loading.gif';
 import { Link, useParams } from 'react-router-dom';
