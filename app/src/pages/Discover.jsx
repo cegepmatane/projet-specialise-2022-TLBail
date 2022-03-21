@@ -99,7 +99,7 @@ function DiscoverNft() {
             <Row className='justify-content-md-center m-2'>
                 <Col xs lg="2">
                     <Alert variant="dark">
-                        <Alert.Heading className='text-center'>{count}</Alert.Heading>
+                        <Alert.Heading className='text-center'>{count - 1}</Alert.Heading>
                         <p className='text-center m-0 p-0'>
                             nombre de nft mint
                         </p>
