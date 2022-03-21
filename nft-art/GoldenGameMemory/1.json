@@ -1,0 +1,63 @@
+{
+    "name": "GoldenGames Memory",
+    "description": "pack de golden games nft pour joué au memory",
+    "attributes": [
+        {
+            "image": "1.png",
+            "serie": "classic"
+        },
+        {
+            "image": "2.png",
+            "serie": "classic"
+        },
+        {
+            "image": "3.png",
+            "serie": "classic"
+        },
+        {
+            "image": "4.png",
+            "serie": "classic"
+        },
+        {
+            "image": "5.png",
+            "serie": "classic"
+        },
+        {
+            "image": "6.png",
+            "serie": "classic"
+        },
+        {
+            "image": "7.png",
+            "serie": "classic"
+        },
+        {
+            "image": "8.png",
+            "serie": "classic"
+        },
+        {
+            "image": "9.png",
+            "serie": "classic"
+        },
+        {
+            "image": "10.png",
+            "serie": "classic"
+        },
+        {
+            "image": "11.png",
+            "serie": "classic"
+        },
+        {
+            "image": "12.png",
+            "serie": "classic"
+        },
+        {
+            "image": "13.png",
+            "serie": "classic"
+        },
+        {
+            "image": "14.png",
+            "serie": "classic"
+        }
+    ],
+    "compiler": "HashLips Art Engine"
+}
