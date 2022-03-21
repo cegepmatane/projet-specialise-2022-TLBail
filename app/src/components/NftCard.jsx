@@ -34,7 +34,7 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", s
         <Card style={style} className={`text-primary ${animState} m-2`} >
             {image}
             <Card.Header className="text-center">Nft # {nft.tokenId}
-                <Link className='btn-primary btn m-2' to={`/nft/${nft.tokenId}`} >
+                <Link className='btn-primary btn m-2' to={nft.link} >
                     voir
                 </Link>
 

@@ -8,6 +8,7 @@ class NftMemory {
 
     constructor(tokenId) {
         this.tokenId = tokenId;
+        this.link = `/nftmemory/${tokenId}`;
     }
 
     async getImg() {
@@ -35,11 +36,13 @@ class NftMemory {
                     let img = new Image(100, 100);
                     img.src = new Nft(id).img;
                     img.onerror = draw;
-                    ctx.drawImage(img, x, y, canvas.width / elementwidth, canvas.height / elementheight);
-                    x += canvas.width / elementwidth;
-                    if (x >= canvas.width) {
-                        x = 0;
-                        y += canvas.height / elementheight;
+                    img.onload = () => {
+                        ctx.drawImage(img, x, y, canvas.width / elementwidth, canvas.height / elementheight);
+                        x += canvas.width / elementwidth;
+                        if (x >= canvas.width) {
+                            x = 0;
+                            y += canvas.height / elementheight;
+                        }
                     }
                 }
             }
