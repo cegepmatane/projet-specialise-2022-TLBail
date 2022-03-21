@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap'
+import { Col, Container, Row, Table, Alert } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 import Nft from '../components/Nft';
 import loadingImg from '../../assets/image/loading.gif'
 import { UserContext } from '../components/UserContext';
-
+import { BlockChain } from '../components/BlockChain';
 function NftPage() {
 
     let params = useParams();
@@ -14,16 +14,23 @@ function NftPage() {
 
     const [data, setData] = useState(null);
     const [owner, setOwner] = useState("");
+    const [ismyNft, setIsMyNft] = useState(false);
 
     useEffect(() => {
         getData();
         getOwner();
+        getIsMyNft();
     }, [params]);
 
-
     const getOwner = async () => {
-        let owner = await nft.getOwner(UserContext.contract);
+        let owner = await BlockChain.getOwner(nft);
         setOwner(owner);
+    }
+
+    const getIsMyNft = async () => {
+        let response = await BlockChain.ismyNft(nft);
+        console.log(response);
+        setIsMyNft(response);
     }
 
     const getData = async () => {
@@ -70,6 +77,9 @@ function NftPage() {
                         </Row>
                         <Row>
                             {owner ? owner : "possédé par personne !"}
+                            {ismyNft && <Alert>
+                                tu possède cette nft !
+                            </Alert>}
                         </Row>
                         <Row>
                             série :

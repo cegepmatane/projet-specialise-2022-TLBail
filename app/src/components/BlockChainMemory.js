@@ -76,6 +76,25 @@ class BlockChainMemoryImpl {
         }
     }
 
+    async getOwner(nft) {
+        var addr;
+        const getAddr = async () => {
+            var noOwner = false;
+            addr = await this.contract.ownerOf(nft.tokenId).catch((error) => {
+                if (error.data.code == 3) {
+                    noOwner = true;
+                }
+            });
+            if (noOwner) return null;
+            if (!addr) {
+                await new Promise(r => setTimeout(r, Math.random() * 1000));
+                await getAddr();
+            }
+        }
+        await getAddr();
+        return addr;
+    }
+
 }
 
 export const BlockChainMemory = new BlockChainMemoryImpl();

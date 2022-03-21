@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
-import Nft from '../components/Nft';
-import loadingImg from '../../assets/image/loading.gif'
+import NftMemory from '../components/NftMemory';
 import { UserContext } from '../components/UserContext';
 import MemoryGame from '../components/MemoryGame';
+import { BlockChainMemory } from '../components/BlockChainMemory';
 
 function NftMemoryPage() {
 
     let params = useParams();
     let tokenId = params.tokenId;
-    let nft = new Nft(tokenId);
+    let nft = new NftMemory(tokenId);
 
     const [data, setData] = useState(null);
     const [owner, setOwner] = useState("");
@@ -23,7 +23,7 @@ function NftMemoryPage() {
 
 
     const getOwner = async () => {
-        let owner = await nft.getOwner(UserContext.contract);
+        let owner = await BlockChainMemory.getOwner(nft);
         setOwner(owner);
     }
 
@@ -33,18 +33,6 @@ function NftMemoryPage() {
         setData(data);
     }
 
-    const dateConverter = (date) => {
-
-        date = new Date(date);
-        var year = date.getFullYear();
-        var month = date.getMonth();
-        var day = date.getDate();
-        var hours = date.getHours();
-        var minutes = "0" + date.getMinutes();
-        var seconds = "0" + date.getSeconds();
-        var formattedTime = year + "/" + month + "/" + day + "     " + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-        return formattedTime;
-    }
 
     const onImageError = (error) => {
         console.log("failed to load image");
