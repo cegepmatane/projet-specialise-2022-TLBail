@@ -90,7 +90,7 @@ function DiscoverNft() {
         } else {
             setBlockchainProvider(BlockChainMemory);
         }
-        setHasMore(true);
+        setPageNumber(1);
     }
 
     return (

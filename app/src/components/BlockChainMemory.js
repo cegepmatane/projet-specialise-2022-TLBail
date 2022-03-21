@@ -20,7 +20,12 @@ class BlockChainMemoryImpl {
 
     async getSpecifiedNfts(pageNumber) {
         let array = Array();
-        array.push(new NftMemory(1));
+        let count = await this.getCount();
+        console.log(count);
+        for (let index = (pageNumber - 1) * 10 + 1; index <= pageNumber * 10 && index < count; index++) {
+            array.push(new NftMemory(index));
+        }
+
         console.log(array);
         return array;
 
