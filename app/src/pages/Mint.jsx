@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Row, Alert, Button } from 'react-bootstrap'
+import { Container, Row, Alert, Button, Form } from 'react-bootstrap'
 import LoadingGif from '../../assets/image/loading.gif'
 import { UserContext } from '../components/UserContext';
 import { ethers } from 'ethers';
@@ -12,6 +12,7 @@ import Confetti from '../components/Confetti';
 function Mint() {
 
     const [transactionState, setTransactionState] = useState("none");
+    const [serieToMint, setSerie] = useState("classic");
 
     const [nft, setNft] = useState(null);
     useEffect(() => {
@@ -25,10 +26,10 @@ function Mint() {
 
 
     const mintToken = async () => {
-        if (Math.floor(Math.random() * 2) == 1) {
+        if (serieToMint == "classic") {
             mintClassicToken();
-        } else {
-            mintClassicToken();
+        } else if (serieToMint == "memory") {
+            mintMemoryToken();
         }
 
     };
@@ -78,13 +79,18 @@ function Mint() {
             <TransactionRule
                 transactionState={transactionState}
                 buttonAction={mintToken}
+                setSerie={setSerie}
             />
         );
     }
 
+
 }
 
-function TransactionRule({ transactionState, buttonAction }) {
+function TransactionRule({ transactionState, buttonAction, setSerie }) {
+    function handleChange() {
+        setSerie("classic");
+    }
     return (
         <Container className="text-light">
             <Row>
@@ -101,15 +107,24 @@ function TransactionRule({ transactionState, buttonAction }) {
                     Actuellement les nft des séries suivantes sont obtenables :
                 </p>
             </Row>
-            <Row className='p-3'>
-                <ul>
-                    <li>
-                        Goldengames Classic
-                    </li>
-                    <li>
-                        Goldengames memory
-                    </li>
-                </ul>
+            <Row>
+                <Form>
+                    <Form.Check
+                        type="radio"
+                        label="Goldengames Classic"
+                        name="formHorizontalRadios"
+                        id="formHorizontalRadios2"
+                        checked
+                        onClick={handleChange}
+                    />
+                    <Form.Check
+                        type="radio"
+                        label="Goldengames memory"
+                        name="formHorizontalRadios"
+                        id="formHorizontalRadios1"
+                        onClick={() => setSerie("memory")}
+                    />
+                </Form>
             </Row>
             <Row>
                 <TransactionBlock transactionState={transactionState} buttonAction={buttonAction} />
