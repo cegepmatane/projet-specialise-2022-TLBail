@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BlockChainMemory } from "./BlockChainMemory";
 import Nft from "./Nft";
 
@@ -21,6 +21,7 @@ class NftMemory {
         const Canvas = props => {
 
             const canvasRef = useRef(null)
+            const [error, setError] = useState(false);
 
             const draw = ctx => {
                 const canvas = canvasRef.current
@@ -35,7 +36,9 @@ class NftMemory {
                 for (const id of arr) {
                     let img = new Image(100, 100);
                     img.src = new Nft(id).img;
-                    img.onerror = draw;
+                    img.onerror = () => {
+                        setError(true);
+                    };
                     img.onload = () => {
                         ctx.drawImage(img, x, y, canvas.width / elementwidth, canvas.height / elementheight);
                         x += canvas.width / elementwidth;
@@ -48,13 +51,17 @@ class NftMemory {
             }
 
             useEffect(() => {
-
+                if (error) {
+                    setError(false);
+                }
                 const canvas = canvasRef.current
                 const context = canvas.getContext('2d')
 
                 //Our draw come here
                 draw(context)
-            }, [draw])
+            }, [draw, error])
+
+
 
             return <canvas ref={canvasRef} {...props} />
         }

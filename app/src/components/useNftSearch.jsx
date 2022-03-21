@@ -7,15 +7,19 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
 
     const [loading, setLoading] = useState(false);
     const [nfts, setNfts] = useState([]);
-    const [hasMore, setHasMore] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
     const [error, setError] = useState(false);
 
+
+
     useEffect(() => {
+        setHasMore(true);
         setNfts([]);
     }, [onlyMyNft, searchAdress, searchId, blockChainProvider])
 
     useEffect(() => {
         console.log(pageNumber);
+        setHasMore(true);
         setLoading(true);
         setError(false);
         getData();
@@ -29,8 +33,16 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
             return;
         }
 
+        if (!hasMore) {
+            return;
+        }
+
         let data;
         data = await blockChainProvider.getSpecifiedNfts(pageNumber)
+        if (data.length < 10) {
+            setHasMore(false);
+            setLoading(false);
+        }
         if (onlyMyNft) {
             data = await blockChainProvider.onlyMyNft(data);
         }
