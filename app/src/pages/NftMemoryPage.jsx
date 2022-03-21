@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap'
+import { Alert, Col, Container, Row, Table, CardGroup } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 import NftMemory from '../components/NftMemory';
 import { UserContext } from '../components/UserContext';
 import MemoryGame from '../components/MemoryGame';
 import { BlockChainMemory } from '../components/BlockChainMemory';
+import NftCard from '../components/NftCard';
+import Nft from '../components/Nft';
 
 function NftMemoryPage() {
 
@@ -15,10 +17,12 @@ function NftMemoryPage() {
 
     const [data, setData] = useState(null);
     const [owner, setOwner] = useState("");
+    const [ismyNft, setIsMyNft] = useState(false);
 
     useEffect(() => {
         getData();
         getOwner();
+        getIsMyNft();
     }, [params]);
 
 
@@ -29,15 +33,18 @@ function NftMemoryPage() {
 
     const getData = async () => {
         let data = await nft.getData();
-        console.log(data);
-        setData(data);
+        let array = Array();
+        for (const id of data) {
+            array.push(parseInt(id));
+        }
+        console.log(array);
+        setData(array);
     }
 
-
-    const onImageError = (error) => {
-        console.log("failed to load image");
-        console.log(error);
-        error.target.src = nft.img + "?t=" + new Date().getTime();
+    const getIsMyNft = async () => {
+        let response = await BlockChainMemory.ismyNft(nft);
+        console.log(response);
+        setIsMyNft(response);
     }
 
 
@@ -49,28 +56,39 @@ function NftMemoryPage() {
                 </div>
             </Row>
             <Row>
-                <Col className='d-flex justify-content-center'>
-                    <img src={nft.img} alt="" onError={onImageError} />
-                </Col>
-                <Col>
-                    <Container className='fs-3'>
-                        <Row>
-                            propriétaire :
-                        </Row>
-                        <Row>
-                            {owner ? owner : "possédé par personne !"}
-                        </Row>
-                        <Row>
-                            série :
-                        </Row>
-                        <Row>
-                            {data && data.name}
-                        </Row>
-                    </Container>
-                </Col>
+                propriétaire :
             </Row>
             <Row>
-                <MemoryGame tokenId={tokenId} />
+                {owner ? owner : "possédé par personne !"}
+            </Row>
+            <Row>
+                {ismyNft && <Alert>
+                    tu possède cette nft !
+                </Alert>}
+            </Row>
+            <Row>
+                <h3>Nft dans ce memory: </h3>
+            </Row>
+            <CardGroup>
+                {data && data.map((nft, i) => (
+                    <div key={i}>
+                        <NftCard
+                            style={{ width: '8rem' }}
+                            nft={new Nft(nft)}
+                            variant="small" />
+                    </div>
+                ))}
+            </CardGroup>
+            <Row>
+                <h1>Memory</h1>
+            </Row>
+            <Row>
+                {
+                    (data && ismyNft) ? <MemoryGame tokenIds={data} /> :
+                        <Alert variant="danger">
+                            ce nft n'a pas encore été débloqué !
+                        </Alert>
+                }
             </Row>
         </Container>
     );

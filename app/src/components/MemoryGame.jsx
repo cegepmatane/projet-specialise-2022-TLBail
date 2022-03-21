@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import { Card, CardGroup, Container, Col, Row, Button } from "react-bootstrap";
 import Nft from "./Nft";
 import Confetti from "../components/Confetti"
-function MemoryGame({ tokenId }) {
+function MemoryGame({ tokenIds }) {
 
 
     const generateCards = () => {
         let array = Array();
         let nbTotalCard = 28;
         let uniqueCard = nbTotalCard / 2;
-        for (let i = tokenId; i < parseInt(tokenId) + uniqueCard; i++) {
-            array.push(card(i));
+        // for (let i = tokenId; i < parseInt(tokenId) + uniqueCard; i++) {
+        //     array.push(card(i));
+        // }
+        for (const id of tokenIds) {
+            array.push(card(parseInt(id)));
         }
         let uniqueNft = [...array];
         for (const nft of uniqueNft) {
@@ -131,9 +134,6 @@ function MemoryGame({ tokenId }) {
 
     return (
         <>
-            <h1>
-                Memory Game id {tokenId} to {parseInt(tokenId) + 8}:
-            </h1>
             <div className="text-primary flex-wrap d-flex justify-content-center"
                 style={{ height: "80vh" }}
             >

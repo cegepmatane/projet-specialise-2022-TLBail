@@ -66,11 +66,10 @@ class BlockChainMemoryImpl {
     }
 
     async ismyNft(nft) {
-        let owner = await nft.getOwner(UserContext.contract).catch(
-
-        );
+        let owner = await this.getOwner(nft);
         if (owner) {
-            return owner == UserContext.signerAddress;
+            let signer = await UserContext.getSignerAdress();
+            return owner == signer;
         } else {
             return null;
         }

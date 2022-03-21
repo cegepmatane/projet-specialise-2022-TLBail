@@ -16,7 +16,6 @@ class NftMemory {
                 console.log(error.message);
             }
         );
-        console.log(data);
         return data;
     }
 
