@@ -21,11 +21,10 @@ class NftMemory {
         const Canvas = props => {
 
             const canvasRef = useRef(null)
-            const [error, setError] = useState(false);
+            const [error, setError] = useState(true);
 
             const draw = ctx => {
                 const canvas = canvasRef.current
-                console.log(canvas.width / 6);
                 ctx.fillStyle = '#000000'
                 ctx.fill()
                 let x = 0;
@@ -52,14 +51,13 @@ class NftMemory {
 
             useEffect(() => {
                 if (error) {
+                    const canvas = canvasRef.current
+                    const context = canvas.getContext('2d')
+
+                    draw(context)
                     setError(false);
                 }
-                const canvas = canvasRef.current
-                const context = canvas.getContext('2d')
-
-                //Our draw come here
-                draw(context)
-            }, [draw, error])
+            }, [error])
 
 
 

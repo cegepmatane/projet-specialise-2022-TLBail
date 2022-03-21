@@ -8,6 +8,7 @@ import NftCard from '../components/NftCard';
 import Nft from '../components/Nft';
 import { Link } from 'react-router-dom';
 import Confetti from '../components/Confetti';
+import NftMemory from '../components/NftMemory';
 
 function Mint() {
 
@@ -21,7 +22,11 @@ function Mint() {
 
     const getCount = async () => {
         const count = parseInt(await UserContext.contract.count());
-        setNft(new Nft(count - 1));
+        if (serieToMint == "classic") {
+            setNft(new Nft(count - 1));
+        } else if (serieToMint == "memory") {
+            setNft(new NftMemory(count - 1));
+        }
     };
 
 
@@ -172,24 +177,18 @@ function TransactionBlock({ transactionState, buttonAction }) {
 }
 
 function Succes({ nft }) {
+    console.log(nft);
     return (
         <Container className='text-primary p-2'>
             <Row className='justify-content-md-center'>
-                <div style={{ width: "20vh" }}>
-                    <NftCard nft={nft} />
-                </div>
+                <NftCard style={{ width: '18rem' }}
+                    nft={nft}
+                    variant="medium" />
             </Row>
             <Row className='justify-content-md-center'>
                 <h1 className='text-center'>
                     success
                 </h1>
-            </Row>
-            <Row className='justify-content-center'>
-                <div className='d-flex justify-content-center'>
-                    <Link className='linkNavBar btn btn-primary' to={`/nft/${nft.tokenId}`} >
-                        voir mon nft
-                    </Link>
-                </div >
             </Row>
             <Row>
                 <Confetti />
