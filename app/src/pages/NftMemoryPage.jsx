@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom';
 import Nft from '../components/Nft';
 import loadingImg from '../../assets/image/loading.gif'
 import { UserContext } from '../components/UserContext';
+import MemoryGame from '../components/MemoryGame';
 
-function NftPage() {
+function NftMemoryPage() {
 
     let params = useParams();
     let tokenId = params.tokenId;
@@ -77,49 +78,14 @@ function NftPage() {
                         <Row>
                             {data && data.name}
                         </Row>
-                        <Row>
-                            date de création :
-                        </Row>
-                        <Row>
-                            {data && dateConverter(data.date)}
-                        </Row>
-                        <Row className='fs-5 mt-2'>
-                            <Table striped bordered responsive hover variant="dark">
-                                <thead>
-                                    <tr>
-                                        <th>attribut</th>
-                                        <th>valeur</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        data ? data.attributes.map(
-                                            (item, i) =>
-                                                <tr key={i}>
-                                                    <td>
-                                                        {item.trait_type}
-                                                    </td>
-                                                    <td>
-                                                        {item.value}
-                                                    </td>
-                                                </tr>
-                                        )
-                                            :
-                                            <div>
-                                                <img src={loadingImg} />
-                                                Chargement ...
-                                            </div>
-                                    }
-                                </tbody>
-                            </Table>
-
-
-                        </Row>
                     </Container>
                 </Col>
+            </Row>
+            <Row>
+                <MemoryGame tokenId={tokenId} />
             </Row>
         </Container>
     );
 }
 
-export default NftPage;
+export default NftMemoryPage;
