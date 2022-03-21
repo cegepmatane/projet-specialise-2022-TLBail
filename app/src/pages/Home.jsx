@@ -41,7 +41,7 @@ function Home() {
                             goldengames.games est le meilleur endroit pour gérer ces NFT
                         </h2>
                         <div className="d-flex">
-                            <Link className='flex-grow-1 linkNavBar btn-primary btn' to="/discover" >
+                            <Link className='flex-grow-1 linkNavBar btn-primary btn' to="/discover/classic" >
                                 <h1 className="m-2 fw-bold">
                                     Explorer
                                 </h1>

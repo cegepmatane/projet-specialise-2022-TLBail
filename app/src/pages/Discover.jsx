@@ -1,35 +1,53 @@
 import { ethers } from 'ethers';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Accordion, Container, Alert, Col, Row, Card, Button, CardGroup, Form, FloatingLabel } from 'react-bootstrap'
+import { Component, useCallback, useEffect, useRef, useState } from 'react';
+import { Accordion, Nav, Container, Alert, Col, Row, Card, Button, CardGroup, Form, FloatingLabel } from 'react-bootstrap'
 import NftCard from '../components/NftCard';
 import { UserContext } from '../components/UserContext'
 import useNftSearch from '../components/useNftSearch';
 import LoadingImg from '../../assets/image/loading.gif';
+import { Link, useParams } from 'react-router-dom';
+import React, { } from 'react';
+import { BlockChain } from '../components/BlockChain';
+import { BlockChainMemory } from '../components/BlockChainMemory';
 
-function Discover() {
+class Discover extends Component {
+
+
+
+    componentDidUpdate() {
+        let params = useParams();
+        let serie = params.serie;
+        console.log(serie);
+    }
+
+    render() {
+        return (<DiscoverNft />);
+    }
+}
+
+function DiscoverNft() {
+
 
     const [count, setcount] = useState(0);
     const [onlyMyNft, setOnlyMyNft] = useState(false);
     const [searchAdress, setSearchAdress] = useState("");
     const [searchId, setSearchId] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const [blockChainProvider, setBlockchainProvider] = useState(BlockChain);
 
     const { nfts, hasMore, error, loading }
-        = useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress);
+        = useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress, blockChainProvider);
 
 
     const observer = useRef(null);
     const lastNft = useCallback((node) => {
         if (loading) return;
         if (observer.current) {
-            console.log(observer.current);
             observer.current.disconnect();
         }
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                console.log("visible");
                 setPageNumber((pageNumber) => {
-                    console.log("pageNumber" + pageNumber + " + 1");
                     return pageNumber + 1;
                 });
             }
@@ -41,17 +59,16 @@ function Discover() {
 
     useEffect(() => {
         getCount();
-    }, []);
+    }, [blockChainProvider]);
 
     const getCount = async () => {
-        const count = parseInt(await UserContext.contract.count());
+        let count = await blockChainProvider.getCount();
         setcount(count);
     };
 
     function handleChangeAdress(event) {
         setSearchAdress(event.target.value);
         setPageNumber(1);
-
     }
 
     function handleChangeId(event) {
@@ -66,6 +83,15 @@ function Discover() {
 
     function handleOnlyMyNft(event) {
         setOnlyMyNft((onlyMyNft) => !onlyMyNft);
+        setPageNumber(1);
+    }
+
+    function switchSeries(newSerie) {
+        if (newSerie == "classic") {
+            setBlockchainProvider(BlockChain);
+        } else {
+            setBlockchainProvider(BlockChainMemory);
+        }
         setPageNumber(1);
     }
 
@@ -90,7 +116,27 @@ function Discover() {
                     </Alert>
                 </Col>
             </Row>
-
+            <Row>
+                <Nav fill variant="tabs" className='bg-dark' defaultActiveKey="classic">
+                    <Nav.Item>
+                        <Nav.Link eventKey="classic" onClick={() => switchSeries("classic")}>
+                            Golden Games classic
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="memory" onClick={() => switchSeries("memory")}>
+                            GoldenGames memory pack
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="soon">
+                            <Link to="/discover/soon" className="linkNavBar text-primary">
+                                prochainement...
+                            </Link>
+                        </Nav.Link>
+                    </Nav.Item>
+                </Nav>
+            </Row>
             <Row >
                 <Col lg="3" className='bg-dark text-light'>
                     <h3>Filtre</h3>

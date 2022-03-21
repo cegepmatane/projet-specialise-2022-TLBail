@@ -46,6 +46,13 @@ function NftPage() {
         return formattedTime;
     }
 
+    const onImageError = (error) => {
+        console.log("failed to load image");
+        console.log(error);
+        error.target.src = nft.img + "?t=" + new Date().getTime();
+    }
+
+
     return (
         <Container className='text-light'>
             <Row>
@@ -55,7 +62,7 @@ function NftPage() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <img src={nft.img} alt="" />
+                    <img src={nft.img} alt="" onError={onImageError} />
                 </Col>
                 <Col>
                     <Container className='fs-3'>

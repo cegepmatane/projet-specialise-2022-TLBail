@@ -1,8 +1,9 @@
 import { BlockChain } from './BlockChain'
 import { useEffect, useState } from 'react'
 import Nft from './Nft';
+import { BlockChainMemory } from './BlockChainMemory';
 
-function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress) {
+function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress, blockChainProvider) {
 
     const [loading, setLoading] = useState(false);
     const [nfts, setNfts] = useState([]);
@@ -11,14 +12,14 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
 
     useEffect(() => {
         setNfts([]);
-    }, [onlyMyNft, searchAdress, searchId])
+    }, [onlyMyNft, searchAdress, searchId, blockChainProvider])
 
     useEffect(() => {
         console.log(pageNumber);
         setLoading(true);
         setError(false);
         getData();
-    }, [pageNumber, onlyMyNft, searchAdress, searchId])
+    }, [pageNumber, onlyMyNft, searchAdress, searchId, blockChainProvider])
 
     const getData = async () => {
         if (searchId && !searchAdress && !onlyMyNft) {
@@ -29,15 +30,15 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
         }
 
         let data;
-        data = await BlockChain.getSpecifiedNfts(pageNumber)
+        data = await blockChainProvider.getSpecifiedNfts(pageNumber)
         if (onlyMyNft) {
-            data = await BlockChain.onlyMyNft(data);
+            data = await blockChainProvider.onlyMyNft(data);
         }
         if (searchAdress) {
-            data = await BlockChain.searchAdress(data, searchAdress);
+            data = await blockChainProvider.searchAdress(data, searchAdress);
         }
         if (searchId) {
-            data = BlockChain.searchId(data, searchId);
+            data = blockChainProvider.searchId(data, searchId);
         }
 
 

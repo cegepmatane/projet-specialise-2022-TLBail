@@ -14,7 +14,7 @@ function Routing() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/discover" element={<Discover />} />
+                    <Route path="/discover/:serie" element={<Discover />} />
                     <Route path="/nft/:tokenId" element={<NftPage />} />
                     <Route path="/mint" element={<Mint />} />
                 </Routes>

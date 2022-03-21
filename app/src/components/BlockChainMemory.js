@@ -1,21 +1,27 @@
 import { UserContext } from "./UserContext";
 import Nft from './Nft';
 
+import { ethers } from 'ethers';
+import GoldenGamesMemory from '../artifacts/contracts/GoldenGamesMemory.sol/GoldenGamesMemory.json';
+const contractMemoryAdress = "0xDB12c2E686e13bD8fCFCCd7aEAFB44cf8A8a495a";
 
-class BlockChaine {
+class BlockChainMemoryImpl {
 
+    constructor() {
+        this.provider = new ethers.providers.Web3Provider(window.ethereum);
+        this.signer = this.provider.getSigner();
+        this.contract = new ethers.Contract(contractMemoryAdress, GoldenGamesMemory.abi, this.signer);
+        this.contractAdress = contractMemoryAdress;
+    }
 
     async getCount() {
-        const count = parseInt(await UserContext.contract.count());
+        let count = parseInt(await this.contract.count());
         return count;
     }
 
     async getSpecifiedNfts(pageNumber) {
         let array = Array();
-        for (let index = (pageNumber - 1) * 10 + 1; index <= pageNumber * 10; index++) {
-            let nft = new Nft(index);
-            array.push(nft);
-        }
+        array.push(new Nft(1));
         console.log(array);
         return array;
 
@@ -72,4 +78,4 @@ class BlockChaine {
 
 }
 
-export const BlockChain = new BlockChaine();
+export const BlockChainMemory = new BlockChainMemoryImpl();

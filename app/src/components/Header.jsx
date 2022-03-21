@@ -20,7 +20,7 @@ function Header() {
                         navbarScroll
                     >
                         <StyleNavLink link="/mint" text="créer" />
-                        <StyleNavLink link="/discover" text="explorer" />
+                        <StyleNavLink link="/discover/classic" text="explorer" />
                         <a href='https://github.com/cegepmatane/projet-specialise-2022-TLBail' className='linkNavBar'>
                             à-propos
                         </a>
