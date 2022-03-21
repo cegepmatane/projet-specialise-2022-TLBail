@@ -1,4 +1,5 @@
 
+import { Card } from 'react-bootstrap'
 
 class Nft {
 
@@ -10,6 +11,15 @@ class Nft {
         this.metaDataURI = `https://gateway.pinata.cloud/ipfs/${this.contentId}/${tokenId}.json`;
 
 
+    }
+
+    async getImg() {
+        const onImageError = (error) => {
+            console.log("failed to load image");
+            console.log(error);
+            error.target.src = this.img + "?t=" + new Date().getTime();
+        }
+        return <Card.Img variant="top" src={this.img} onError={onImageError} />;
     }
 
     preloadImage() {

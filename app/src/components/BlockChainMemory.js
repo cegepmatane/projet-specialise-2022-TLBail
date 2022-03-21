@@ -1,6 +1,5 @@
 import { UserContext } from "./UserContext";
-import Nft from './Nft';
-
+import NftMemory from "./NftMemory";
 import { ethers } from 'ethers';
 import GoldenGamesMemory from '../artifacts/contracts/GoldenGamesMemory.sol/GoldenGamesMemory.json';
 const contractMemoryAdress = "0xDB12c2E686e13bD8fCFCCd7aEAFB44cf8A8a495a";
@@ -21,7 +20,7 @@ class BlockChainMemoryImpl {
 
     async getSpecifiedNfts(pageNumber) {
         let array = Array();
-        array.push(new Nft(1));
+        array.push(new NftMemory(1));
         console.log(array);
         return array;
 

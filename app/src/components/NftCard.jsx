@@ -6,10 +6,18 @@ import { Link } from 'react-router-dom';
 import Nft from "./Nft";
 function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", style = {} }) {
     const [data, setData] = useState(null);
+    const [image, setImage] = useState(null);
 
+    useEffect(() => {
+        getImage();
+    }, []);
+
+    const getImage = async () => {
+        let response = await nft.getImg();
+        setImage(response);
+    }
 
     if (variant == "full") {
-
         useEffect(() => {
             getData();
         }, []);
@@ -21,17 +29,10 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", s
         setData(data);
     }
 
-    const onImageError = (error) => {
-        console.log("failed to load image");
-        console.log(error);
-        error.target.src = nft.img + "?t=" + new Date().getTime();
-    }
-
-
 
     return (
         <Card style={style} className={`text-primary ${animState} m-2`} >
-            <Card.Img variant="top" src={nft.img} onError={onImageError} />
+            {image}
             <Card.Header className="text-center">Nft # {nft.tokenId}
                 <Link className='btn-primary btn m-2' to={`/nft/${nft.tokenId}`} >
                     voir
