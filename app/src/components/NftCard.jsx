@@ -10,7 +10,7 @@ function NftCard({ nft = new Nft(0), animState = "fade-in", variant = "small", s
 
     useEffect(() => {
         getImage();
-    }, []);
+    }, [nft]);
 
     const getImage = async () => {
         let response = await nft.getImg();
