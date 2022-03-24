@@ -127,10 +127,8 @@ function DiscoverNft() {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="soon">
-                            <Link to="/discover/soon" className="linkNavBar text-primary">
-                                prochainement...
-                            </Link>
+                        <Nav.Link eventKey="soon" onClick={() => switchSeries("pool")}>
+                            GoldenGames pool
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>
