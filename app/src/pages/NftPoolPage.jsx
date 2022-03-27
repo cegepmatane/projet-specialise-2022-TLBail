@@ -74,7 +74,7 @@ function NftPoolPage() {
                 </Alert>}
             </Row>
             <Row>
-                <h3>Nft dans ce memory: </h3>
+                <h3>Nft dans ce billard: </h3>
             </Row>
             <CardGroup>
                 {data && data.map((nft, i) => (
@@ -87,7 +87,7 @@ function NftPoolPage() {
                 ))}
             </CardGroup>
             <Row>
-                <h1>Memory</h1>
+                <h1>billard</h1>
             </Row>
             <Row>
                 {

@@ -9,6 +9,7 @@ import Nft from '../components/Nft';
 import { Link } from 'react-router-dom';
 import Confetti from '../components/Confetti';
 import NftMemory from '../components/NftMemory';
+import NftPool from '../components/NftPool';
 
 function Mint() {
 
@@ -26,6 +27,8 @@ function Mint() {
             setNft(new Nft(count - 1));
         } else if (serieToMint == "memory") {
             setNft(new NftMemory(count - 1));
+        } else if (serieToMint == "pool") {
+            setNft(new NftPool(count - 1));
         }
     };
 
@@ -121,7 +124,6 @@ function TransactionRule({ transactionState, buttonAction, setSerie }) {
             <Row>
                 <p>
                     Mint un nft en cliquant sur le bouton Mint.
-                    Les frais de création sont de 0.05 eth,
                     une fois la transaction effectuée,
                     un nft est ajouté à ta collection de manières aléatoires.
                     Personne ne sait qu’elle est le prochain nft créer !
@@ -133,7 +135,7 @@ function TransactionRule({ transactionState, buttonAction, setSerie }) {
                 <Form>
                     <Form.Check
                         type="radio"
-                        label="Goldengames Classic"
+                        label="Goldengames Classic ( 0.05 ETH)"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios0"
                         checked
@@ -141,14 +143,14 @@ function TransactionRule({ transactionState, buttonAction, setSerie }) {
                     />
                     <Form.Check
                         type="radio"
-                        label="Goldengames memory"
+                        label="Goldengames memory ( 0.05 ETH)"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
                         onClick={() => setSerie("memory")}
                     />
                     <Form.Check
                         type="radio"
-                        label="Goldengames billard"
+                        label="Goldengames billard ( 0.08 ETH)"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios2"
                         onClick={() => setSerie("pool")}
