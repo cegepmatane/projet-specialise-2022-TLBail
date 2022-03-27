@@ -24,14 +24,15 @@ function PoolGame({ nfts }) {
                 <PoolTable />
             </React.Suspense>
             <Physics iteration={6}>
-                <Debug scale={1.1} color="black">
-                    <Plane rotation={[-Math.PI / 2, 0, 0]} />
-                    <Plane position={[0, 0, -24]} />
-                    <Plane position={[0, 0, 24]} rotation={[0, Math.PI, 0]} />
-                    <Plane position={[11, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
-                    <Plane position={[-11, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
+                {/* <Debug scale={1.1} color="black"> */}
+                <Plane rotation={[-Math.PI / 2, 0, 0]} />
+                <Plane position={[0, 1, 0]} rotation={[Math.PI / 2, 0, 0]} />
+                <Plane position={[0, 0, -24]} />
+                <Plane position={[0, 0, 24]} rotation={[0, Math.PI, 0]} />
+                <Plane position={[11, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+                <Plane position={[-11, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
 
-                </Debug>
+                {/* </Debug> */}
 
                 <object3D>
                     <PoolBall position={[0, 0.5, -16]} textureURL={nfts[0].img} />
@@ -48,8 +49,8 @@ function PoolGame({ nfts }) {
                     <PoolBall position={[2.02, 0.5, 17]} textureURL={nfts[11].img} />
                     <PoolBall position={[-0.51, 0.5, 14]} textureURL={nfts[12].img} />
                     <PoolBall position={[0, 0.5, 17]} textureURL={nfts[13].img} />
-                    {/* <PoolBall position={[-1.53, 0.5, 16]} textureURL={nfts[14].img} />
-                    <PoolBall position={[1.01, 0.5, 15]} textureURL={nfts[15].img} /> */}
+                    <PoolBall position={[-1.53, 0.5, 16]} textureURL={nfts[14].img} />
+                    <PoolBall position={[1.01, 0.5, 15]} textureURL={nfts[15].img} />
                 </object3D>
 
             </Physics>

@@ -1,5 +1,5 @@
 import { UserContext } from "./UserContext";
-import NftMemory from "./NftMemory";
+import NftPool from "./NftPool";
 import { ethers } from 'ethers';
 import GoldenGamesMemory from '../artifacts/contracts/GoldenGamesPool.sol/GoldenGamesPool.json';
 const contractPoolAdress = "0xc00F3Ed6b72491300AA175d24B4678B092A72c6B";
@@ -23,7 +23,7 @@ class BlockChainPoolImpl {
         let count = await this.getCount();
         console.log(count);
         for (let index = (pageNumber - 1) * 10 + 1; index <= pageNumber * 10 && index < count; index++) {
-            array.push(new NftMemory(index));
+            array.push(new NftPool(index));
         }
 
         console.log(array);

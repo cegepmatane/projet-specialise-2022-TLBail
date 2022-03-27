@@ -6,9 +6,9 @@ import { Container, Row, CardGroup, Alert } from 'react-bootstrap';
 import Lights from '../components/Pool/Lights';
 import Nft from '../components/Nft';
 
-import NftMemory from '../components/NftMemory';
+import NftPool from '../components/NftPool';
 
-import { BlockChainMemory } from '../components/BlockChainMemory';
+import { BlockchainPool } from '../components/BlockChainPool';
 
 import { useParams } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function NftPoolPage() {
 
     let params = useParams();
     let tokenId = params.tokenId;
-    let nft = new NftMemory(tokenId);
+    let nft = new NftPool(tokenId);
 
     const [data, setData] = useState(null);
     const [owner, setOwner] = useState("");
@@ -33,7 +33,7 @@ function NftPoolPage() {
 
 
     const getOwner = async () => {
-        let owner = await BlockChainMemory.getOwner(nft);
+        let owner = await BlockchainPool.getOwner(nft);
         setOwner(owner);
     }
 
@@ -48,7 +48,7 @@ function NftPoolPage() {
     }
 
     const getIsMyNft = async () => {
-        let response = await BlockChainMemory.ismyNft(nft);
+        let response = await BlockchainPool.ismyNft(nft);
         console.log(response);
         setIsMyNft(response);
     }
