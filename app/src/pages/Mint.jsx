@@ -35,6 +35,8 @@ function Mint() {
             mintClassicToken();
         } else if (serieToMint == "memory") {
             mintMemoryToken();
+        } else if (serieToMint == "pool") {
+            mintPoolToken();
         }
 
     };
@@ -76,6 +78,23 @@ function Mint() {
         getCount();
     }
 
+    const mintPoolToken = async () => {
+        UserContext.setSerie("pool");
+        const connection = UserContext.contract.connect(UserContext.signer);
+        const addr = await UserContext.signer.getAddress();
+        await UserContext.getCount();
+        var result = await UserContext.contract.payToMint({
+            value: ethers.utils.parseEther('0.08'),
+        }).catch(error => {
+            console.log(error);
+        });
+        setTransactionState("inProgress");
+        await result.wait();
+        console.log("transaction result : ");
+        console.log(result);
+        setTransactionState("succes");
+        getCount();
+    }
 
     if (transactionState === "succes") {
         return (<Succes nft={nft} />);
@@ -93,9 +112,7 @@ function Mint() {
 }
 
 function TransactionRule({ transactionState, buttonAction, setSerie }) {
-    function handleChange() {
-        setSerie("classic");
-    }
+
     return (
         <Container className="text-light">
             <Row>
@@ -118,9 +135,9 @@ function TransactionRule({ transactionState, buttonAction, setSerie }) {
                         type="radio"
                         label="Goldengames Classic"
                         name="formHorizontalRadios"
-                        id="formHorizontalRadios2"
+                        id="formHorizontalRadios0"
                         checked
-                        onClick={handleChange}
+                        onClick={() => setSerie("classic")}
                     />
                     <Form.Check
                         type="radio"
@@ -128,6 +145,13 @@ function TransactionRule({ transactionState, buttonAction, setSerie }) {
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
                         onClick={() => setSerie("memory")}
+                    />
+                    <Form.Check
+                        type="radio"
+                        label="Goldengames billard"
+                        name="formHorizontalRadios"
+                        id="formHorizontalRadios2"
+                        onClick={() => setSerie("pool")}
                     />
                 </Form>
             </Row>
