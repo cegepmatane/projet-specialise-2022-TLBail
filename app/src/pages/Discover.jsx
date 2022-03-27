@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import React, { } from 'react';
 import { BlockChain } from '../components/BlockChain';
 import { BlockChainMemory } from '../components/BlockChainMemory';
+import { BlockchainPool } from '../components/BlockChainPool';
 
 class Discover extends Component {
 
@@ -87,8 +88,10 @@ function DiscoverNft() {
     function switchSeries(newSerie) {
         if (newSerie == "classic") {
             setBlockchainProvider(BlockChain);
-        } else {
+        } else if (newSerie == "memory") {
             setBlockchainProvider(BlockChainMemory);
+        } else {
+            setBlockchainProvider(BlockchainPool);
         }
         setPageNumber(1);
     }
@@ -127,10 +130,8 @@ function DiscoverNft() {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="soon">
-                            <Link to="/discover/soon" className="linkNavBar text-primary">
-                                prochainement...
-                            </Link>
+                        <Nav.Link eventKey="soon" onClick={() => switchSeries("pool")}>
+                            GoldenGames pool
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>

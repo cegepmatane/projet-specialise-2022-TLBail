@@ -1,0 +1,103 @@
+import { UserContext } from "./UserContext";
+import NftMemory from "./NftMemory";
+import { ethers } from 'ethers';
+import GoldenGamesMemory from '../artifacts/contracts/GoldenGamesPool.sol/GoldenGamesPool.json';
+const contractPoolAdress = "0xc00F3Ed6b72491300AA175d24B4678B092A72c6B";
+
+class BlockChainPoolImpl {
+
+    constructor() {
+        this.provider = new ethers.providers.Web3Provider(window.ethereum);
+        this.signer = this.provider.getSigner();
+        this.contract = new ethers.Contract(contractPoolAdress, GoldenGamesMemory.abi, this.signer);
+        this.contractAdress = contractPoolAdress;
+    }
+
+    async getCount() {
+        let count = parseInt(await this.contract.count());
+        return count;
+    }
+
+    async getSpecifiedNfts(pageNumber) {
+        let array = Array();
+        let count = await this.getCount();
+        console.log(count);
+        for (let index = (pageNumber - 1) * 10 + 1; index <= pageNumber * 10 && index < count; index++) {
+            array.push(new NftMemory(index));
+        }
+
+        console.log(array);
+        return array;
+
+    }
+
+    async onlyMyNft(nfts) {
+        if (!UserContext.signerAddress) {
+            await UserContext.getSignerAdress();
+        }
+        let array = Array();
+        for (const nft of nfts) {
+            if (await this.ismyNft(nft)) {
+                array.push(nft);
+            }
+        }
+        console.log(array);
+        return array;
+    }
+
+    async searchAdress(nfts, searchAdress) {
+        let array = Array();
+        for (const nft of nfts) {
+            let owner = await nft.getOwner(UserContext.contract);
+            if (owner == searchAdress) {
+                console.log(owner + " | " + searchAdress);
+                array.push(nft);
+            }
+        }
+        return array;
+    }
+
+
+    searchId(nfts, tokenId) {
+        let array = Array();
+        nfts.forEach(nft => {
+            if (nft.tokenId == tokenId) {
+                console.log(nft.tokenId + " | " + tokenId);
+                array.push(nft);
+            }
+        });
+        return array;
+    }
+
+    async ismyNft(nft) {
+        let owner = await this.getOwner(nft);
+        if (owner) {
+            let signer = await UserContext.getSignerAdress();
+            return owner == signer;
+        } else {
+            return null;
+        }
+    }
+
+    async getOwner(nft) {
+        var addr;
+        const getAddr = async () => {
+            var noOwner = false;
+            addr = await this.contract.ownerOf(nft.tokenId).catch((error) => {
+                if (error.data.code == 3) {
+                    noOwner = true;
+                }
+            });
+            if (noOwner) return null;
+            if (!addr) {
+                await new Promise(r => setTimeout(r, Math.random() * 1000));
+                await getAddr();
+            }
+        }
+        await getAddr();
+        return addr;
+    }
+
+}
+
+export const BlockchainPool = new BlockChainPoolImpl();
