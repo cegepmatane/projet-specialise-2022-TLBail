@@ -75,7 +75,7 @@ class BlockChaine {
     }
 
     async ismyNft(nft) {
-        let owner = await nft.getOwner(this.contract).catch(
+        let owner = await this.getOwner(nft).catch(
 
         );
         if (owner) {
