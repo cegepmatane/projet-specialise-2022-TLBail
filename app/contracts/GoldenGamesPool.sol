@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 import "hardhat/console.sol";
 
-contract GoldenGamesMemory is ERC721, ERC721URIStorage, Ownable {
+contract GoldenGamesPool is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -18,7 +18,7 @@ contract GoldenGamesMemory is ERC721, ERC721URIStorage, Ownable {
 
     mapping(uint256 => uint256[]) tokenURIS;
 
-    constructor() ERC721("GoldenGamesMemory", "GGM") {
+    constructor() ERC721("GoldenGamesPool", "GGP") {
         _tokenIdCounter.increment();
     }
 
@@ -64,7 +64,7 @@ contract GoldenGamesMemory is ERC721, ERC721URIStorage, Ownable {
     }
 
     function payToMint() public payable returns (uint256) {
-        require(msg.value >= 0.05 ether, "Need to pay up ! ");
+        require(msg.value >= 0.08 ether, "Need to pay up ! ");
 
         address recipient = msg.sender;
         uint256 newItemId = _tokenIdCounter.current();
