@@ -18,22 +18,20 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
     }, [onlyMyNft, searchAdress, searchId, blockChainProvider])
 
     useEffect(() => {
-        console.log(pageNumber);
-        setHasMore(true);
-        setLoading(true);
-        setError(false);
-        getData();
-    }, [pageNumber, onlyMyNft, searchAdress, searchId, blockChainProvider])
+        console.log("page Number " + pageNumber);
+        if (hasMore) {
+            setLoading(true);
+            setError(false);
+            getData();
+            console.log("reset");
+        }
+    }, [pageNumber, onlyMyNft, searchAdress, searchId, blockChainProvider, hasMore])
 
     const getData = async () => {
         if (searchId && !searchAdress && !onlyMyNft) {
             console.log("skip");
             setNfts([new Nft(searchId)]);
             setLoading(false);
-            return;
-        }
-
-        if (!hasMore) {
             return;
         }
 
@@ -62,9 +60,14 @@ function useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdre
             });
 
             setLoading(false);
-        } else if (searchId && nfts.length > 0) {
+        } else if (searchId && nfts.length > 0) { // l'utilisateur recherche un nft et il a été trouvé on skip
             setLoading(false);
-        } else {
+        } else if (!searchId) { // il y a pus de données
+            console.log("no more data");
+            setHasMore(false);
+            setLoading(false);
+        } else { // il y a encore de la donné mais dans les pages suivantes
+            console.log("else");
             setTimeout(() => {
                 setPageNumber(pageNumber => {
                     return pageNumber + 1;

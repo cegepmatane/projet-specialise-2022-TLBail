@@ -34,7 +34,7 @@ function DiscoverNft() {
     const [pageNumber, setPageNumber] = useState(1);
     const [blockChainProvider, setBlockchainProvider] = useState(BlockChain);
 
-    const { nfts, hasMore, error, loading }
+    const { error, loading, nfts, hasMore }
         = useNftSearch(pageNumber, setPageNumber, onlyMyNft, searchId, searchAdress, blockChainProvider);
 
 
