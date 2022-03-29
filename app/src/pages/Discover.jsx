@@ -110,7 +110,7 @@ function DiscoverNft() {
                 </Col>
                 <Col xs lg="2">
                     <Alert variant="dark">
-                        <Alert.Heading className='text-center'>134</Alert.Heading>
+                        <Alert.Heading className='text-center'>4</Alert.Heading>
                         <p className='text-center m-0 p-0'>
                             nombre de propriétaire
                         </p>
@@ -126,12 +126,12 @@ function DiscoverNft() {
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link eventKey="memory" onClick={() => switchSeries("memory")}>
-                            GoldenGames memory pack
+                            GoldenGames memory
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link eventKey="soon" onClick={() => switchSeries("pool")}>
-                            GoldenGames pool
+                            GoldenGames billard
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>

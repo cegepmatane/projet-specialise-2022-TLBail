@@ -21,7 +21,7 @@ function PoolBall({ position, textureURL }) {
     return (
         <mesh ref={ref} position={position} speed={new Vector2()} castShadow
             onClick={() => {
-                api.applyImpulse([0, 0, 100], [0, 0, 0])
+                api.applyImpulse([0, 0, 30], [0, 0, 0])
             }}
         >
             <sphereGeometry attach='geometry' args={[0.5, 128, 128]} />

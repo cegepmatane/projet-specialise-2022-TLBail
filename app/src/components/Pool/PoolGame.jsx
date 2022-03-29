@@ -23,7 +23,7 @@ function PoolGame({ nfts }) {
             <React.Suspense fallback={<mesh />}>
                 <PoolTable />
             </React.Suspense>
-            <Physics iteration={6}>
+            <Physics iteration={20}>
                 {/* <Debug scale={1.1} color="black"> */}
                 <Plane rotation={[-Math.PI / 2, 0, 0]} />
                 <Plane position={[0, 1, 0]} rotation={[Math.PI / 2, 0, 0]} />

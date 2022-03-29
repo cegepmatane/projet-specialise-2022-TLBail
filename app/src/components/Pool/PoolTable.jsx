@@ -138,8 +138,8 @@ function PoolTable() {
                         position={pos}
                         rotation={
                             idx === 0
-                                ? [0, 0, (-90 * Math.PI) / 180, 0]
-                                : [0, 0, (90 * Math.PI) / 180, 0]
+                                ? [0, 0, -Math.PI / 2]
+                                : [0, 0, Math.PI / 2]
                         }
                     />
                 );
