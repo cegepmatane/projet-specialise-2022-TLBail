@@ -78,7 +78,7 @@ function NftPage() {
                         <Row>
                             {owner ? owner : "possédé par personne !"}
                             {ismyNft && <Alert>
-                                tu possède cette nft !
+                                tu possèdes ce nft !
                             </Alert>}
                         </Row>
                         <Row>

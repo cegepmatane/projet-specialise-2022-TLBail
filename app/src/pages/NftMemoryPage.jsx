@@ -63,7 +63,7 @@ function NftMemoryPage() {
             </Row>
             <Row>
                 {ismyNft && <Alert>
-                    tu possède cette nft !
+                    tu possèdes ce nft !
                 </Alert>}
             </Row>
             <Row>
@@ -91,7 +91,7 @@ function NftMemoryPage() {
                             </Alert>
                             :
                             <Alert variant="danger">
-                                tu doit possédé ce nft pour joué
+                                tu dois posséder ce nft pour jouer
                             </Alert>
 
                 }
