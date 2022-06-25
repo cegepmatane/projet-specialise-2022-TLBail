@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #6685",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/6685.png",
+  "dna": "07f37b414b947f9b7b1ecfda7bc73406eb471b27",
+  "edition": 6685,
+  "date": 1643859097152,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Cyan"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pika_of_all"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "red"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

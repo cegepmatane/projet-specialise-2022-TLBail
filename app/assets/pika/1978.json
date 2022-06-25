@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1978",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1978.png",
+  "dna": "911da35c1e24ac872591afda482ac395e4f18e45",
+  "edition": 1978,
+  "date": 1643858411902,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Red"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikagojo"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "frame"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

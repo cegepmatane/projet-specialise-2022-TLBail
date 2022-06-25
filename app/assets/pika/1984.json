@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1984",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1984.png",
+  "dna": "3b90e7f2c7fafc21e207b5fed32939040f1e1c12",
+  "edition": 1984,
+  "date": 1643858412801,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "livachu"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green2"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

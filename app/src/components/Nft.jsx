@@ -1,4 +1,3 @@
-
 import { Card } from 'react-bootstrap'
 
 class Nft {
@@ -7,8 +6,8 @@ class Nft {
     constructor(tokenId) {
         this.tokenId = tokenId;
         this.contentId = 'QmV6aMKL6uWXz266sLFPFDqWgRsFGnEedrmgyxN8Yv1eYo';
-        this.img = `https://gateway.pinata.cloud/ipfs/${this.contentId}/${tokenId}.jpg`;
-        this.metaDataURI = `https://gateway.pinata.cloud/ipfs/${this.contentId}/${tokenId}.json`;
+        this.img = `assets/pika/${tokenId}.jpg`;
+        this.metaDataURI = `assets/pika/${tokenId}.json`;
         this.link = `/nft/${tokenId}`;
 
     }

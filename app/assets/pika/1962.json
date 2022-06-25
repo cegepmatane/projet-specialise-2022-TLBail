@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1962",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1962.png",
+  "dna": "89fe20af3e26206d323d1193491eea0c89b4a69e",
+  "edition": 1962,
+  "date": 1643858409585,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "killuka"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "frame"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1994",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1994.png",
+  "dna": "d979e2c72c6372ae77d7ea8114efc35c920b5a19",
+  "edition": 1994,
+  "date": 1643858414242,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE(2)"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikagojo"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green2"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #4992",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/4992.png",
+  "dna": "10d2598f3594fe8dfd75afa3055f9f5ebd4743e9",
+  "edition": 4992,
+  "date": 1643858848078,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "killuka"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "frame"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

@@ -3,24 +3,25 @@
 @import "component/discover";
 @import "component/nft";
 
-.megaTextHome{
+.megaTextHome {
     font-size: 4.4em;
     text-align: left;
 }
 
-.installContainer{
+.installContainer {
     text-align: center;
     font-weight: bold;
     padding: 2em;
     display: flex;
     flex-direction: column;
-    h1{
+
+    h1 {
         margin: 2rem;
         font-size: 6em;
         text-align: center;
     }
 
-    a{
+    a {
         font-size: 2em;
     }
 
@@ -28,41 +29,41 @@
         width: 250px;
         height: auto;
     }
-      
+
     @media only screen and (max-width: 768px) {
         #logo-container svg {
-          width: 150px;
-          height: auto;
-        }  
+            width: 150px;
+            height: auto;
+        }
     }
 }
 
-.fade-in{
+.fade-in {
     animation: fadeIn 1s ease;
     opacity: 1;
 }
 
 @keyframes fadeIn {
-    0%{
+    0% {
         opacity: 0;
     }
 
-    100%{
+    100% {
         opacity: 1;
     }
 }
 
-.fade-out{
+.fade-out {
     animation: fadeOut 1s ease;
     opacity: 0;
 }
 
 @keyframes fadeOut {
-    0%{
+    0% {
         opacity: 1;
     }
 
-    100%{
+    100% {
         opacity: 0;
     }
 }

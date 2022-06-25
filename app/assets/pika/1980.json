@@ -1,0 +1,31 @@
+{
+  "name": "GoldenGames #1980",
+  "description": "golden games nft",
+  "image": "ipfs://NewUriToReplace/1980.png",
+  "dna": "f3954bb629866b0027fefa497ff38659a652fe75",
+  "edition": 1980,
+  "date": 1643858412188,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "TEXTURE"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Pink"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "pikasoka2"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "green1"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
