@@ -1,6 +1,6 @@
 # Le projet-specialise-2022-TLBail
 
-### ~~Projet disponible sur [~~goldengames.tlbail.fr~~](http://goldengames.tlbail.fr/)~~
+### Projet disponible sur [goldengames.tlbail.fr](http://goldengames.tlbail.fr/)
 
 ## Description
 - réalisation d'une application web3 sur les nft.
